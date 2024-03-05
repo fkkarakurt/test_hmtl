@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Doğrusal regresyon modeli (Linear Regression), muhtemelen bir veri bilimcisinin cebindeki ilk araçlardan biridir. Basit olarak algılansa da, potansiyeli hafife alınmamalıdır."
+    />
+
+    <!-- Social Media Meta Tags -->
+    <meta
+      property="og:title"
+      content="Hackod - Lineer Regresyona Teknik Giriş"
+    />
+    <meta property="og:site_name" content="Hackod" />
+    <meta
+      property="og:url"
+      content="https://hackod.com/blog/lineer-regresyona-giris"
+    />
+    <meta
+      property="og:description"
+      content="Doğrusal regresyon modeli (Linear Regression), muhtemelen bir veri bilimcisinin cebindeki ilk araçlardan biridir. Basit olarak algılansa da, potansiyeli hafife alınmamalıdır."
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:image"
+      content="https://hackod.com/blog/lineer-regresyona-giris/lineer-regresyon-feature.jpg"
+    />
+
+    <!-- Twitter Card Data -->
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Hackod - Lineer Regresyona Teknik Giriş"
+    />
+    <meta name="twitter:site" content="@hackodsocial" />
+    <meta
+      name="twitter:description"
+      content="Doğrusal regresyon modeli (Linear Regression), muhtemelen bir veri bilimcisinin cebindeki ilk araçlardan biridir. Basit olarak algılansa da, potansiyeli hafife alınmamalıdır."
+    />
+    <meta
+      name="twitter:image"
+      content="https://hackod.com/blog/lineer-regresyona-giris/lineer-regresyon-feature.jpg"
+    />
+    <meta name="twitter:image:alt" content="Lineer Regresyona Teknik Giriş" />
+
+    <title>Hackod - Lineer Regresyona Teknik Giriş</title>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://hackod.com/blog/lineer-regresyona-giris/"
+        },
+        "headline": "Lineer Regresyona Teknik Giriş",
+        "image": "https://hackod.com/blog/lineer-regresyona-giris/lineer-regresyon-feature.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "Fatih Küçükkarakurt",
+          "url": "https://linkedin.com/in/fkkarakurt"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Hackod",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://hackod.com/favicon/mstile-150x150.png"
+          }
+        },
+        "datePublished": ""
+      }
+    </script>
+
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="../../code.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <script>
+      hljs.highlightAll();
+    </script>
+  </head>
+  <body>
+    <header>
+      <section class="ascii-header">
+        <h1 style="display: none">
+          Hackod | Yazılım Geliştirme ve Programlama | Blog
+        </h1>
+        <a href="/" style="text-decoration: none">
+          <pre class="logo-pre">
+  __    __                      __                        __ 
+  /  |  /  |                    /  |                      /  |
+  $$ |  $$ |  ______    _______ $$ |   __   ______    ____$$ |
+  $$ |__$$ | /      \  /       |$$ |  /  | /      \  /    $$ |
+  $$    $$ | $$$$$$  |/$$$$$$$/ $$ |_/$$/ /$$$$$$  |/$$$$$$$ |
+  $$$$$$$$ | /    $$ |$$ |      $$   $$<  $$ |  $$ |$$ |  $$ |
+  $$ |  $$ |/$$$$$$$ |$$ \_____ $$$$$$  \ $$ \__$$ |$$ \__$$ |
+  $$ |  $$ |$$    $$ |$$       |$$ | $$  |$$    $$/ $$    $$ |
+  $$/   $$/  $$$$$$$/  $$$$$$$/ $$/   $$/  $$$$$$/   $$$$$$$/ 
+  
+                                                                          
+               </pre
+          >
+        </a>
+      </section>
+
+      <nav>
+        <ul class="navigation">
+          <li>
+            <a href="/blog">Blog</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <article>
+      <h1>Doğrusal Regresyon'a (Linear Regression) Teknik Giriş</h1>
+      <p>
+        Doğrusal regresyon modeli (Linear Regression), veri bilimciler için
+        temel araçlardan biri olarak kabul edilir. Basit olarak algılansa da,
+        tahminlerde bulunma ve bu tahminlerin ardındaki mekanizmaları anlama
+        konusunda büyük potansiyele sahiptir. Bu model, çeşitli ticari ve
+        bilimsel alanlarda veriler üzerinden çıkarımlar yapmak için birçok
+        araştırmacı tarafından kullanılmaktadır. Ancak, gerçek dünya sorunları
+        üzerinde çalışırken, veri bilimciler zaman zaman doğrusal regresyon
+        modellerini bir kenara bırakıp daha güçlü tahmin yeteneklerine sahip
+        algoritmalara yönelme eğilimindedir. Elbette, seçilen yöntem, sorulan
+        sorunun ve hedeflerin doğasına bağlı olmalıdır; yani amacınız yalnızca
+        bir soruya cevap bulmak mı yoksa sürecin nasıl işlediğini de anlamak mı?
+      </p>
+
+      <p>
+        Doğrusal regresyon modellerini kullanmak, zaman, istatistiksel bilgi ve
+        doğrusal olmayan süreçlere yönelik kapsamlı anlayış gerektirir. Bu,
+        sadece bir komut dosyası çalıştırmak ve hiper parametreleri doğrulamakla
+        sınırlı bir işlem değildir; daha derin bir anlayış ve analiz gerektirir.
+      </p>
+
+      <p>
+        Bu makalede, doğrusal regresyon modeli uygulanırken göz önünde
+        bulundurulması gereken temel noktaların özetini sunmayı amaçlamaktayız.
+        Burada sunulanlar, sonuçları yorumlamadan önce dikkate alınması gereken
+        faktörleri ve dikkat edilmesi gereken alanları anlamanıza yardımcı
+        olacak bir kılavuz niteliğindedir ve kesin bir reçete değildir.
+      </p>
+      <h2>Doğrusal Regresyon Uygulamaları</h2>
+      <p>
+        Bahsettiğimiz gibi, cevaplamak isteyebileceğimiz sorulardan biri
+        "<strong>nasıl?</strong>"dır. Örneğin, ders çalışmak için harcanan saat
+        ile sınav puanları, eğitim düzeyi ve maaşlar arasındaki ilişkiyi
+        <strong>anlamak</strong>; ya da belki bir işinizde belirli bir pazarlama
+        kampanyasına harcanan her para için satışlardaki marjinal artışı
+        <strong>anlayabilmek</strong> ile ilgileniyorsunuz. Her örnekteki
+        anahtarın, değişkenler arasındaki korelasyonun anlaşılması olarak
+        yorumlanabilecek "<strong>anlama</strong>" kelimesi olduğunu fark
+        edeceksiniz. Bu bağlamda, bazı yorumlanabilir kalıpları yakalamak ve
+        verilerin arkasında neler olduğu hakkında bazı fikirler vermek için
+        doğrusal bir regresyon çok yararlı olabilir.
+      </p>
+
+      <p>
+        Hatırlatmak için, doğrusal bir regresyon uygularken, verilerin doğrudan
+        görülemeyen, popülasyon örneğinden bir dizi özellik kullanılarak kısmen
+        tahmin edilebilen belirli bir "işlev veya doğal dağılımı" olduğunu
+        varsayıyoruz. Özellikle, bu varsayım, sonuçların "doğruluğu" hakkında
+        tartışabilmek için test etmemiz ve doğrulamamız gereken birçok hususu
+        içerir.
+      </p>
+
+      <h3>Örnek: R'de Doğrusal Regresyon modeli analizi</h3>
+
+      <p>Bununla birlikte, R'de uygulanan pratik bir örnekle başlayalım.</p>
+
+      <p>
+        Diyelim ki önümüzdeki hafta sonu bazı arkadaşlarınızla balığa çıkmayı
+        planlıyorsunuz ve sadece bir alet kullanarak balık ağırlıklarını çok
+        yüksek hassasiyetle tahmin edebileceğinizi göstererek onlara sürpriz
+        yapmayı düşünüyorsunuz. Ama hepsi bu değil! Ayrıca herhangi bir boyut
+        ölçümü (dikey uzunluk, boy vb.) değişirse balığın ağırlığının ne kadar
+        değişebileceğini de söyleyebilirsiniz. Yani bu noktada arkadaşlarınız
+        arasında çok popüler olmayabilirsiniz, ancak bazı bahisleri
+        kazanabilirsiniz.
+      </p>
+
+      <p>
+        Bu, lineer regresyon modelimizi kullanmak ve gelişmiş teknikleri
+        araştırmak için eğlenceli bir bağlamdır. Bu örnekte, Kaggle'daki Aung
+        Pyae'den alabileceğiniz balık pazarındaki yaygın balık türlerinin
+        veritabanını kullanacağız. Bu veri kümesi, farklı boyut ve tür
+        ölçümlerini tanımlayan birkaç sütun ve 158 gözlem içerir. Bu analiz için
+        3 basit boyut ölçüm değişkeni kullanarak başlayacağız: dikey uzunluk,
+        yükseklik ve ağırlık (tüm değişkenler santimetre cinsinden). Bu
+        değişkenler modelimizin predictorleri olacak. Yanıt değişkeni için
+        balıkların gram cinsinden ağırlığına sahibiz. Şimdi, örneğimize
+        başlayalım!
+      </p>
+
+      <h4>Paketleri içe aktarma</h4>
+
+      <pre><code class="language-python">library(MASS)  
+library(Kendall)  
+library(car)  
+library(corrplot)  
+library(RColorBrewer)
+</code></pre>
+
+      <h4>Residuals çizimleri için bir fonksiyon oluşturma</h4>
+
+      <p>
+        Her şeyden önce, regresyon modelinden kaynaklanan residualları çizmemize
+        izin veren bir fonksiyon oluşturacağız. Bu durumda, daha sonra değişen
+        varyans analizi yaparken ham residuallardan daha iyi performans
+        gösterdikleri için öğrencileştirilmiş residualları alıyoruz. Bunun
+        nedeni, teorik lineer modeldeki varyansın "bilinen" olarak tanımlanması
+        ve uygulamada bunun yerine örnek varyansının tahmin edilmesidir, bu
+        nedenle ham residuallar, homoskedastik olsa bile hatalarda değişen
+        varyans gösterebilir.
+        <a
+          href="https://stats.stackexchange.com/questions/44033/what-advantages-do-internally-studentized-residuals-offer-over-raw-estimated-r"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >StackExchange'de</a
+        >
+        bu etki hakkında kısa bir açıklama bulabilirsiniz.
+      </p>
+
+      <pre><code class="language-python">plot_residuals = function(linear_model){  
+    res_stud=rstudent(linear_model)  
+    k=1  
+    for(i in res_stud){  
+      if(is.na(i)){res_stud[k]=0}  
+      else{res_stud[k]=i}  
+      k=k+1}  
+par(mfrow=c(1,2))  
+plot(linear_model$fitted.values,res_stud); abline(0,0); abline(-3,0,col="red"); abline(3,0,col="red")  
+qqnorm(res_stud); qqline(res_stud, col = 2)  
+}
+</code></pre>
+
+      <h3>Veri kümesini içe aktarma ve keşfetme</h3>
+
+      <p>
+        Başlangıçta balığın dikey uzunluğu, yüksekliği ve genişliği
+        değişkenlerini öngörücü olarak ve "ağırlık" değişkenini yanıt değişkeni
+        olarak kullanacağız.
+      </p>
+
+      <pre><code class="language-python">df_fish = read.csv('Fish.csv',header=TRUE)  
+selected_cols = c('Weight','Length1', 'Height','Width')  
+df_fish = df_fish[,selected_cols]  
+attach(df_fish)
+summary(df_fish)</code></pre>
+
+      <h3>Hatalı satırları silin</h3>
+
+      <p>
+        Verilerin kısa bir incelemesinden sonra, "ağırlığı" 0'a eşit olan bir
+        gözlem bulduk, bu nedenle gelecekteki sorunlardan kaçınmak için onu
+        ortadan kaldırdık. Ek olarak, yanıt değişkenlerini ve residualları
+        sonradan dönüştürmek için kullanılan değişkenlerin her zaman pozitif
+        değerler almasını gerektirdiği belirtilmelidir.
+      </p>
+
+      <pre><code class="language-python">df_fish = df_fish[Weight!=0,]  
+rownames(df_fish)=1:nrow(df_fish)</code></pre>
+
+      <h3>Verileri keşfetme</h3>
+
+      <p>
+        Değişkenlerin dağılım diyagramını ve bir korelasyon matrisini çizerek
+        veri keşfine devam ediyoruz. Buradaki amacımız, öncelikle regresörler
+        ile yanıt değişkeni arasında bir ilişkinin varlığını bulmak ve ikinci
+        olarak olası bir çoklu bağlantı sorunu beklentisiyle predictor
+        değişkenler arasındaki korelasyonu görmektir.
+      </p>
+
+      <pre><code class="language-python"># Scatter plot (Dağılım grafiği)
+par(mfrow=c(1,3))   
+pairs(df_fish)
+
+# Correlation matrix (korelasyon matrisi)
+M = cor(df_fish)  
+corrplot(M, type="lower",col=brewer.pal(n=8, name="RdYlBu"))</code></pre>
+
+      <img
+        alt="Doğrusal Regresyon Korelasyon Matrisi Grafiği"
+        src="korelasyon-matrisi-grafigi.jpg"
+        style="width: 100%"
+      />
+
+      <p>
+        Grafiklerden de görebileceğimiz gibi, sadece predictor değişkenler ile
+        yanıt değişkeni arasında değil, aynı zamanda predictorlerin kendileri
+        arasında da yüksek bir korelasyon var gibi görünüyor. Bu, çoklu bağlantı
+        sorunuyla yüzleşmemiz gerektiği anlamına gelir.
+      </p>
+
+      <p>
+        Ayrıca, predictorler ve yanıt değişkeni arasında doğrusal olmayan bir
+        ilişkinin varlığı da gözlemlenebilir, bu da değişkenlerde herhangi bir
+        dönüşüm olmadan doğrusal bir model uygularsak residuallarda yapısal
+        sorunlarla karşılaşacağımız anlamına gelir.
+      </p>
+
+      <p>
+        Bu bağlamda, modelin daha kesin bir düzeltmesini elde etmemizi
+        sağlayacak testler ve dönüşüm teknikleri kullanarak bu çıkarımları
+        değerlendirmeye devam edeceğiz.
+      </p>
+
+      <h3>Doğrusal Regresyonda Eğitim - Test Split</h3>
+
+      <p>
+        Sırasıyla gözlemlerin %80'ini ve %20'sini kullanarak eğitim ve test
+        bölümünü gerçekleştirdik.
+      </p>
+
+      <pre><code class="language-python">n_sample = floor(0.8*nrow(df_fish))  
+set.seed(7)  
+train = sample(seq_len(nrow(df_fish)), size = n_sample)  
+train_sample = df_fish[train,]  
+row.names(train_sample) = NULL  
+test_sample = df_fish[-train,]  
+row.names(test_sample) = NULL</code></pre>
+
+      <h3>Model 1</h3>
+
+      <h4>Orjinal doğrusal model</h4>
+
+      <p>
+        3 orijinal predictorü ve yanıt değişkenini kullanarak ilk modelimize
+        uyarlıyoruz. Daha sonra regresyon sonuçlarını yazdırıyoruz.
+      </p>
+
+      <pre><code class="language-python">lm_original = lm(Weight~., data=train_sample)  
+summary(lm_original)</code></pre>
+
+      <img
+        alt="Doğrusal Regresyon Sonuçları Grafiği"
+        src="regresyon-sonuclari-grafigi.jpg"
+        style="width: 100%"
+      />
+
+      <p>
+        Beklediğimiz gibi, regresyon sonuçları regresörlerin iyi bir performans
+        gösterdiğini yönünde. Aslında, model genel olarak tahmini yanıt
+        değişkeninin ortalamasını yansıtmaktan oluşan bir modelden daha iyi
+        performans gösteriyor (bu fark, güven seviyelerinin geleneksel
+        değerlerinde istatistiksel olarak anlamlıdır). Fisher istatistiği p
+        değeri 0'a yakın olup, modelin yanıt değişkeninin ortalama etrafındaki
+        değişkenliğin %88'ini açıkladığını gösteren Düzeltilmiş R-karede
+        (Adjusted R-squared) gözlemlenebilir.
+      </p>
+
+      <p>
+        Ayrıca, ilk çizimde gördüklerimize dayanarak, balığın "ağırlığı" ve
+        "genişliği" arasında daha yüksek bir korelasyon veya anlamlılık düzeyi
+        bekleyebilirdik. Ancak, beklediğimiz ile bulduğumuz arasındaki bu fark,
+        çoklu bağlantıdan kaynaklanmaktadır.
+      </p>
+
+      <h4>Çoklu doğrusallığı kontrol etme</h4>
+
+      <p>
+        Çoklu bağlantı olayını ele almak için, her bir predictorün diğer
+        predictörlere göre korelasyonunu anlamamıza izin veren ve bir değişkenin
+        modelimiz için risk değişken olup olamayacağını tanımlamamıza yardımcı
+        olan
+        <a
+          href="https://dergipark.org.tr/tr/download/article-file/224969"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >Inflation Factor (VIF)</a
+        >
+        kullanacağız.
+      </p>
+
+      <pre><code class="language-python">vif(lm_original)</code></pre>
+
+      <img alt="VIF Sonuçları Tablosu" src="vif-sonuclari-grafigi.jpg" />
+
+      <p>
+        Sonuçları gözlemleyerek, "genişlik" değişkeniyle ilişkili daha yüksek
+        bir VIF olduğunu not ediyoruz. Bu nedenle, çoklu doğrusallığı en yüksek
+        olan değişkeni modelden çıkararak modelimizi küçülteceğiz ve ardından
+        kalan modelle VIF'i yeniden hesaplayacağız.
+      </p>
+
+      <h3>Model 2</h3>
+
+      <h4>Azaltılmış doğrusal model</h4>
+
+      <p>
+        Şimdi modelimizi sadece "dikey uzunluk" ve "yükseklik" değişkenleri ile
+        yeniden oluşturuyoruz.
+      </p>
+
+      <pre><code class="language-python">lm_reduced = lm(Weight~Length1+Height, data=train_sample)  
+summary(lm_reduced)</code></pre>
+
+      <img
+        alt="Doğrusal Regresyon Azaltılmış Model Sonuçları Grafiği"
+        src="azaltilmis-model-sonuclari.jpg"
+        style="width: 100%"
+      />
+
+      <p>
+        Yeni değişken alt kümesine sahip modelin sonuçları pratikte değişmeden
+        kalır. Gerçekte gözlemleyebildiğimiz şey, Ortalama kare hatasında çok
+        küçük bir artış ile beraber "yükseklik" değişkeninin istatistiksel
+        anlamlılık düzeyinde küçük bir gelişme ve Düzeltilmiş R-kare'de çok
+        küçük bir düşüş görürüz.
+      </p>
+
+      <h4>Çoklu doğrusallığı kontrol etme</h4>
+
+      <p>Her bir predictörün VIF'ine ne olduğunu görelim.</p>
+
+      <pre><code class="language-python">vif(lm_reduced)</code></pre>
+
+      <img
+        alt="VIF Sonuçları Grafiği"
+        src="model-2-vif-sonuclari-tablosu.jpg"
+        style="width: 75%"
+      />
+
+      <p>
+        Gördüğümüz gibi, kalan iki açıklayıcı değişken için VIF önemli ölçüde
+        azaldı. Bu, "genişlik" değişkenini kaldırmanın iyi bir karar olduğunu
+        gösteriyor; daha basit, daha iyidir.
+      </p>
+
+      <h4>Residual Çizimi</h4>
+
+      <p>
+        Değişkenlerimizi tanımladığımıza göre, regresyon sonuçlarının kapsamlı
+        bir analizini yapmaya devam ediyoruz. Residualların analizi, regresyon
+        modelimizden en iyi şekilde yararlanmak için temel bir unsurdur.
+        Başlangıç olarak, bu tür bir modeli kullanırken, hata dağılımının
+        normalliği varsayımından hareket ediyoruz. Bu, modelin sağladığı tüm
+        avantajlardan yararlanmamızı sağlar.
+      </p>
+
+      <pre><code class="language-python">plot_residuals(lm_reduced)</code></pre>
+
+      <img
+        alt="Residual Analizi Grafiği"
+        src="dogrusal-regresyon-residual-analiz-grafigi.jpg"
+        style="width: 100%"
+      />
+
+      <p>
+        Grafikte gördüğümüz gibi, residuallarda bir tür ikinci dereceden yapı
+        var gibi görünüyor. Bu, kullanılan predictörlerde bazı ek bilgilerin
+        hala çıkarılabileceğini gösterir; ancak, bu bilgiyi çıkarmak için
+        değişkenler üzerinde belirli dönüşümler yapmamız gerekebilir.
+      </p>
+
+      <p>
+        Verilerin normalliği ile ilgili olarak (Normal Q-Q Grafiği),
+        residualların dağılımında bazı çarpıklıklar ve ağır kuyruklar
+        gözlemleyebiliriz. Bu sezgiyi doğrulamak için, genel olarak iki
+        dağılımın eşit olup olmadığını ve bu özel durumda residualların
+        dağılımının teorik ile benzer olup olmadığını karşılaştırmamıza izin
+        veren <strong>Kolmogorov-Smirnov</strong> testini kullanacağız.
+      </p>
+
+      <h4>Residuallarda normalliğin test edilmesi</h4>
+
+      <pre><code class="language-python">lm_reduced_residuals=rstudent(lm_reduced)  
+ks.test(lm_reduced_residuals,"pnorm",mean(lm_reduced_residuals),sd(lm_reduced_residuals))</code></pre>
+
+      <img
+        alt="Residual Normallik Testi Grafiği"
+        src="residual-normallik-testi-verileri.jpg"
+        style="width: 75%"
+      />
+
+      <p>
+        Kolmogorov-Smirnov testinin sıfır hipotezi, her iki dağılımın da eşit
+        olmadığı, alternatif hipotezi ise her iki dağılımın da eşit olduğu
+        şeklindedir. Test sonucunda, sıfır hipotezin reddedilmesini istiyoruz
+        (yüksek bir p değerine ihtiyacımız var). Ancak bu durumda, p-değerinin
+        bazı geleneksel güven düzeylerinden daha düşük olduğunu gözlemliyoruz.
+        Bu, %1 düzeyinde sıfır hipotezini reddetmediğimizi ve sonuç olarak
+        yeterli kanıta sahip olmadığımızı gösterir.
+      </p>
+
+      <h4>
+        Heteroskedastisite: Residuallar ve uygun değerler arasındaki korelasyonu
+        test etme
+      </h4>
+
+      <p>
+        Residualların homoskedastisitesini doğrulamakla ilgileniyoruz.
+        Homoskedastisite, modelimizin öngördüğü değerler arttıkça veya azaldıkça
+        hataların büyümediğini veya küçülmediğini ifade eder. Bu, modelin
+        performansını iyileştirmemize yardımcı olabilecek bir özelliktir.
+      </p>
+
+      <pre><code class="language-python">summary(Kendall(abs(lm_reduced$residuals),lm_reduced$fitted.values))</code></pre>
+
+      <img
+        alt="Residual ve Uygun Değerler Korelasyon Testi Grafiği"
+        src="residual-uygun-degerler-korelasyon-test-grafigi.jpg"
+        style="width: 75%"
+      />
+
+      <p>
+        Uygulanan Kendall testi, residuallar ve tahmin edilen değerler arasında
+        istatistiksel olarak anlamlı bir korelasyon olduğunu gösterir. Bu,
+        değişen varyanslı residuallarda olduğumuzu ve modelin iyileştirilmesi
+        gerektiğini gösterir.
+      </p>
+
+      <h3>Model 3</h3>
+
+      <h4>Yanıt değişkenini dönüştürme</h4>
+
+      <p>
+        Residual bir yapıya sahip olduğumuzda, yanıt değişkenini dönüştürmek
+        veya öngörücüleri dönüştürmek gibi seçeneklerimiz var. Pratikte, yanıt
+        değişkenini dönüştürmekle başlamak ve yeni bir dönüşüm önermeden önce
+        sonuçları yeniden değerlendirmek yaygındır.
+      </p>
+
+      <p>
+        Ardından, Box-Cox maksimum olabilirlik tekniğini kullanarak "ağırlık"
+        değişkenini dönüştürmeye başlayacağız. Bu, değişkenin x power lambda
+        olarak dönüştürülebileceği bir lambda değeri tahmin etmemize izin verir.
+      </p>
+
+      <pre><code class="language-python">y_transformed=boxcox(lm_reduced)  
+y_transformed$x[which.max(y_transformed$y)]</code></pre>
+
+      <img
+        alt="Lambda Değerine Dayalı Dönüşüm Grafiği"
+        src="lambda-degerine-dayali-donusum-grafigi.jpg"
+        style="width: 100%"
+      />
+
+      <p>
+        Sonuçlar, "ağırlık" değişkeni üzerinde 0.38 lambda gücü uygulamak olası
+        bir dönüşümü göstermektedir. Bu büyüklükteki bir dönüşüm, modelin nihai
+        sonuçlarının yorumlanmasını zorlaştırabilir. Genellikle, katsayıları
+        kolaylıkla yorumlamamıza izin veren önerilen değere yakın bir dönüşüm
+        tercih edilir. Bu nedenle logaritmik bir dönüşüm seçiyoruz.
+      </p>
+
+      <h4>Dönüştürülmüş yanıt değişkeni ile doğrusal modeli çalıştırma</h4>
+
+      <pre><code class="language-python">lm_transform_y = lm(log(Weight) ~ Length1 + Height, data=train_sample)  
+summary(lm_transform_y)</code></pre>
+
+      <img
+        alt="Dönüştürülmüş Model Sonuçları Grafiği"
+        src="donusturulmus-model-sonuclari.jpg"
+        style="width: 100%"
+      />
+
+      <p>
+        Bu dönüşümü uyguladıktan sonra, modelin performansında küçük ama önemli
+        bir gelişme fark ediyoruz. Hem modelin hem de predictorlerin
+        istatistiksel anlamlılık düzeylerini korurken, Düzeltilmiş R Karede
+        %1'den fazla bir artış gözlemleyebiliriz.
+      </p>
+
+      <h4>Residual Çizimi</h4>
+
+      <pre><code class="language-python">plot_residuals(lm_transform_y)</code></pre>
+
+      <img
+        alt="Residual Çizimi Grafiği"
+        src="dogrusal-regresyon-qqplot-residual-cizim.jpg"
+        style="width: 100%"
+      />
+
+      <p>
+        Peki, sorunu çözdük mü? Hataların yapısı değerlendirildiğinde, bu ilk
+        dönüşüm hem değişen varyans problemini tersine çevirmemiş hem de normal
+        dağılımdan uzak olan residualların dağılımını “kötüleştirmiş”
+        görünmektedir.
+      </p>
+
+      <h4>Residuallarda normalliğin test edilmesi</h4>
+
+      <pre><code class="language-python">lm_transform_y_residuals=rstudent(lm_transform_y)  
+ks.test(lm_transform_y_residuals,"pnorm",mean(lm_transform_y_residuals),sd(lm_transform_y_residuals))</code></pre>
+
+      <img
+        alt="Residual Normallik Testi Grafiği"
+        src="residual-normallik-testi-tablosu.jpg"
+        style="width: 75%"
+      />
+
+      <p>
+        Residualların dağılımı, yeni p-değerinde (geçerli 0,01, önceki 0,04)
+        yansıtıldığını gördüğümüz gibi, normal dağılımdan uzaklaştı. Bu nedenle,
+        hata dağılımında normalliği reddetmeye devam ediyoruz.
+      </p>
+
+      <h4>
+        Heteroskedastisite: Residuallar ve uygun değerler arasındaki korelasyonu
+        test etme
+      </h4>
+
+      <pre><code class="language-python">summary(Kendall(abs(lm_transform_y$residuals),lm_transform_y$fitted.values))</code></pre>
+
+      <img
+        alt="Residual ve Uygun Değerler Korelasyon Testi Grafiği"
+        src="uygun-degerler-korelasyon-testi-sonucu.jpg"
+        style="width: 75%"
+      />
+
+      <p>
+        Değişen varyansla ilgili olarak, biraz da olsa “kötüleşmiş” görünüyor,
+        bu yüzden hala bu sorunu tersine çeviremiyoruz.
+      </p>
+
+      <h3>Model 4</h3>
+
+      <h4>Predictorleri dönüştürmek</h4>
+
+      <p>
+        Predictorlerin dönüşümü için Box-Tidwell maksimum olabilirlik dönüşüm
+        tekniğini kullanacağız, bu teknik, açıklayıcı değişkenlerden daha fazla
+        bilgi çıkarmamızı sağlayacak önerilen lambda gücünü anlamamıza yardımcı
+        olur.
+      </p>
+
+      <pre><code class="language-python">boxTidwell(log(Weight) ~ Length1 + Height ,data=train_sample)</code></pre>
+
+      <img
+        alt="Box-Tidwell Dönüşümü Sonuçları"
+        src="box-tidwell-donusumu.jpg"
+        style="width: 100%"
+      />
+
+      <p>
+        Elde edilen sonuçlar, Length1 değişkeni için lambda = 0.007 ve Height
+        değişkeni için lambda = -0.38 dönüşümünün uygulanmasını önerir. Her iki
+        durumda da, önerilen dönüşümler %1 düzeyinde istatistiksel olarak
+        anlamlıdır. Sonuç olarak, önerilen değerlere göre çok hassas dönüşümler
+        yapmanın sonuçların sonraki yorumlarını büyük ölçüde karmaşık hale
+        getirebileceğini görüyoruz. Bu nedenle, her iki değişkene de logaritmik
+        bir dönüşüm uygulamayı tercih ediyoruz.
+      </p>
+
+      <h4>
+        Doğrusal modeli yanıt değişkeni ve dönüştürülmüş predictorler ile
+        çalıştırma
+      </h4>
+
+      <pre><code class="language-python">lm_transform_y_X = lm(log(Weight) ~ log(Length1) + log(Height), data=train_sample)  
+summary(lm_transform_y_X)</code></pre>
+
+      <img
+        alt="Dönüştürülmüş Predictorler ile Model Sonuçları"
+        src="donusturulmus-predictorler-ile-model-sonuclari.jpg"
+        style="width: 100%"
+      />
+
+      <p>
+        Gerçekleştirilen dönüşümler, modelin istatistiksel anlamlılık
+        düzeylerini korurken, Düzeltilmiş-R-kare'nin yaklaşık %9'luk bir artış
+        gösterdiği performansta önemli bir gelişme sağlamıştır.
+      </p>
+
+      <h4>Residual Çizimi</h4>
+
+      <pre><code class="language-python">plot_residuals(lm_transform_y_X)</code></pre>
+
+      <img
+        alt="Residual Çizimi Sonrası Analiz"
+        src="residual-cizim-sonrasi-analiz.jpg"
+        style="width: 100%"
+      />
+
+      <p>
+        Residualların grafiklerini analiz ederken, residualların yapısında ve
+        normal dağılıma yakınlıkta dikkate değer bir gelişme gözlemliyoruz.
+      </p>
+
+      <h4>Residuallarda normalliğin test edilmesi</h4>
+
+      <pre><code class="language-python">lm_transform_y_X_residuals=rstudent(lm_transform_y_X)  
+ks.test(lm_transform_y_X_residuals,"pnorm",mean(lm_transform_y_X_residuals),sd(lm_transform_y_X_residuals))</code></pre>
+
+      <img
+        alt="Residual Normallik Testi Sonuçları"
+        src="residual-normallik-testi-sonuclari-tablosu.jpg"
+        style="width: 75%"
+      />
+
+      <p>
+        Sıfır hipotezini (p-değeri = 0,5) reddedebildik, bu da mevcut modelle
+        residualların dağılımının normal olmadığını sürdürmek için yeterli bilgi
+        olmadığını gösterir.
+      </p>
+
+      <h4>
+        Heteroskedastisite: Residuallar ve uygun değerler arasındaki korelasyonu
+        test etme
+      </h4>
+
+      <pre><code class="language-python">summary(Kendall(abs(lm_transform_y_X$residuals),lm_transform_y_X$fitted.values))</code></pre>
+
+      <img
+        alt="Residuallar ve Uygun Değerler Arasındaki Korelasyon Testi"
+        src="model-3-icin-dogrusal-regresyon-korelasyon-testi.jpg"
+        style="width: 75%"
+      />
+
+      <p>
+        Yüksek bir p-değeri (0,84) ile residuallar ve uygun değerler arasındaki
+        korelasyonda istatistiksel olarak anlamlı bir azalma bulduk, bu da
+        değişen varyans sorununu tersine çevirdiğimizi gösterir.
+      </p>
+
+      <h3>Sonuçlar</h3>
+
+      <img
+        alt="Son Modelin Sonuçları"
+        src="dogrusal-regresyon-son-modelin-sonuclari.jpg"
+        style="width: 100%"
+      />
+
+      <p>
+        Modelin performansı %99'a yakın bir determinasyon katsayısı (Adjusted
+        R-squared) ile çok iyi görünüyor, bu da "dikey uzunluk" ve "yükseklik"
+        değişkenlerini kullanarak yanıt değişkenini neredeyse tamamen
+        açıklayabildiğimizi gösteriyor.
+      </p>
+
+      <p>
+        Ayrıca, bu model, residualların yanıt değişkeni üzerindeki kısmi
+        etkisini ve uygulanan dönüşümler sayesinde çıkarım yapmamıza olanak
+        tanır. Örneğin, dönüştürülmüş değişken log(Length1)'e eşlik eden
+        katsayı, uzunluğu %10 daha fazla olan bir balığın ağırlığının yaklaşık
+        %20 daha fazla olacağını gösterir. Benzer şekilde, dönüştürülmüş
+        değişken log(Height)'a eşlik eden katsayı, Height'ı %10 daha fazla olan
+        bir balığın ağırlığının yaklaşık %10 daha fazla olacağını gösterir.
+      </p>
+
+      <p>
+        Modelimiz, balık tahminlerinde kral olmanıza olanak tanır. Bu pratik
+        örnek, çok sayıda kavramı ele almamızı ve lineer regresyon modellerini
+        incelememizi sağladı. En uygun cevap her zaman en karmaşık olanı
+        değildir.
+      </p>
+    </article>
+    <footer>
+      <p>2024 &copy; <a href="/">Hackod</a></p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Vim editörü nedir? Vim nasıl kullanılır? Vim'i başlangıçtan ileri düzeye herkes için inceledik. Vim ile kodlama verimliliğinizi artırın."
+    />
+
+    <!-- Social Media Meta Tags -->
+    <meta
+      property="og:title"
+      content="Hackod - Vim editörü nedir? Vim nasıl kullanılır?"
+    />
+    <meta property="og:site_name" content="Hackod" />
+    <meta
+      property="og:url"
+      content="https://hackod.com/blog/vim-nasil-kullanilir"
+    />
+    <meta
+      property="og:description"
+      content="Vim editörü nedir? Vim nasıl kullanılır? Adım adım inceleyelim."
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:image"
+      content="https://hackod.com/blog/vim-nasil-kullanilir/vim-nasil-kullanilir.jpg"
+    />
+
+    <!-- Twitter Card Data -->
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Hackod - Vim editörü nedir? Vim nasıl kullanılır?"
+    />
+    <meta name="twitter:site" content="@hackodsocial" />
+    <meta
+      name="twitter:description"
+      content="Vim editörü nedir? Vim nasıl kullanılır? Adım adım inceleyelim."
+    />
+    <meta
+      name="twitter:image"
+      content="https://hackod.com/blog/vim-nasil-kullanilir/vim-nasil-kullanilir.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Vim editörü nedir? Vim nasıl kullanılır?"
+    />
+
+    <title>Hackod - Vim editörü nedir? Vim nasıl kullanılır?</title>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://hackod.com/blog/vim-nasil-kullanilir/"
+        },
+        "headline": "Vim editörü nedir? Vim nasıl kullanılır?",
+        "image": "https://hackod.com/blog/vim-nasil-kullanilir/vim-nasil-kullanilir.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "Fatih Küçükkarakurt",
+          "url": "https://linkedin.com/in/fkkarakurt"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Hackod",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://hackod.com/favicon/mstile-150x150.png"
+          }
+        },
+        "datePublished": ""
+      }
+    </script>
+
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="../../code.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <script>
+      hljs.highlightAll();
+    </script>
+  </head>
+  <body>
+    <header>
+      <section class="ascii-header">
+        <h1 style="display: none">
+          Hackod | Yazılım Geliştirme ve Programlama | Blog
+        </h1>
+        <a href="/" style="text-decoration: none">
+          <pre class="logo-pre">
+    __    __                      __                        __ 
+    /  |  /  |                    /  |                      /  |
+    $$ |  $$ |  ______    _______ $$ |   __   ______    ____$$ |
+    $$ |__$$ | /      \  /       |$$ |  /  | /      \  /    $$ |
+    $$    $$ | $$$$$$  |/$$$$$$$/ $$ |_/$$/ /$$$$$$  |/$$$$$$$ |
+    $$$$$$$$ | /    $$ |$$ |      $$   $$<  $$ |  $$ |$$ |  $$ |
+    $$ |  $$ |/$$$$$$$ |$$ \_____ $$$$$$  \ $$ \__$$ |$$ \__$$ |
+    $$ |  $$ |$$    $$ |$$       |$$ | $$  |$$    $$/ $$    $$ |
+    $$/   $$/  $$$$$$$/  $$$$$$$/ $$/   $$/  $$$$$$/   $$$$$$$/ 
+    
+                                                                            
+                 </pre
+          >
+        </a>
+      </section>
+
+      <nav>
+        <ul class="navigation">
+          <li>
+            <a href="/blog">Blog</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <article>
+      <section>
+        <h1 class="article-main-header">
+          Vim Editörü Nedir? Vim Nasıl Kullanılır?
+        </h1>
+      </section>
+
+      <p>
+        Vim editörü konusundaki problem, kullanımının zorluğu değil Vim'i
+        kullanmaya devam edip etmeyeceğiniz.
+      </p>
+      <p>
+        Buradaki esas amacımız, daha önce Vim editörünü kullanmamış bir
+        kullanıcıyı baz alarak ilerlemek ve adım adım gitmek olacak.
+      </p>
+      <p>
+        Vim konusunda her zaman öğrenilecek bir şeyler olacaktır fakat, bu
+        makaleden sonra bir daha asla en başa dönmek zorunda kalmayacaksınız.
+      </p>
+      <p>Bu yazı boyunca, şu üç kazanımı elde etmiş olacaksınız:</p>
+      <ol>
+        <li>Vim editörünün felsefesini anlayacaksınız.</li>
+        <li>Şuan kullandığınız editörde de gelişeceksiniz.</li>
+        <li>Vim editörünü kullanırken oldukça hızlanacaksınız.</li>
+      </ol>
+      <h2 id="i-erik">İçerik</h2>
+      <ul>
+        <li><a href="#neden-vim">Neden Vim?</a></li>
+        <li><a href="#vim-basamaklari">Vim Basamakları</a></li>
+        <li>
+          <a href="#yapilandirma">Yapılandırma</a>
+          <ul>
+            <li>
+              <a href="#vimrc-degisiklikleri"
+                >Birkaç <strong>.vimrc</strong> değişikliği</a
+              >
+            </li>
+            <li><a href="#leader">Leader Anahtarınızı Değiştirin</a></li>
+            <li><a href="#eklentiler">Vim Eklenti Yönetimi</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#vim-dil-yapisi">Vim'in Dil Yapısı</a>
+          <ul>
+            <li><a href="#fiiller">Fiiller</a></li>
+            <li><a href="#degistiriciler">Değiştiriciler</a></li>
+            <li><a href="#isimler">İsimler</a></li>
+            <li><a href="#komut-olusturmak">Komut Oluşturmak</a></li>
+          </ul>
+        </li>
+        <li><a href="#dosya-yapisi">Vim'de Dosya ile Çalışmak</a></li>
+        <li>
+          <a href="#metin-arama">Metin Arama</a>
+          <ul>
+            <li><a href="#dizeye-gore-arama">Dizeye Göre Arama</a></li>
+          </ul>
+        </li>
+        <li><a href="#kelime-ile-hareket">Kelime Bazında Hareket Etmek</a></li>
+        <li>
+          <a href="#cumle-paragraf">Cümle veya Paragrafa Göre Hareket Etme</a>
+        </li>
+        <li><a href="#ekranda-hareket">Ekran İçinde Hareket Etme</a></li>
+        <li><a href="#diger-hareketler">Diğer Hareketler</a></li>
+        <li>
+          <a href="#metin-degistirme">Metin Değiştirme</a>
+          <ul>
+            <li><a href="#bicimlendirme">Metni Biçimlendirme</a></li>
+            <li><a href="#metni-silme">Metni Silme</a></li>
+            <li><a href="#geri-al">Geri Al ve Tekrarla</a></li>
+            <li>
+              <a href="#kopyala">Kopyala Yapıştır</a>
+              <ul>
+                <li><a href="#yapistir">Metni Yapıştırma</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#denetim">Yazım Denetimi</a>
+              <ul>
+                <li>
+                  <a href="#yanlis-yazilmis"
+                    >Yanlış yazılmış kelimeleri bulmak</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li><a href="#yer-degistirme">Yer Değiştirme</a></li>
+          </ul>
+        </li>
+        <li><a href="#vim-gorsel-mod">Vim Görsel Mod Kullanımı</a></li>
+        <li>
+          <a href="#makro">Vim Makro Kullanımı</a>
+          <ul>
+            <li><a href="#neden-makro">Neden Makro</a></li>
+          </ul>
+        </li>
+        <li><a href="#ozet">Özetlemek Gerekirse</a></li>
+      </ul>
+
+      <h2 id="neden-vim">Neden Vim Editörünü Kullanalım?</h2>
+
+      <p>
+        Aşağıdaki üç nedenden dolayı, insanların Vim kullanması gerektiğine
+        inanıyorum.
+      </p>
+      <ol>
+        <li>
+          Her yerde bulunur. Farklı işletim sistemleri veya farklı cihazları
+          için yeni bir düzenleyici öğrenme konusunda endişelenmenize gerek yok.
+        </li>
+        <li>
+          Ölçeklenebilir. Sadece yapılandırma dosyalarını düzenlemek için
+          kullanabilirsiniz. Tüm yazma ve kodlama platformunuz Vim olabilir.
+        </li>
+        <li>
+          Güçlüdür. Bir dil gibi çalıştığı için, Vim sizi hüsrana uğratmaz.
+        </li>
+      </ol>
+      <p>
+        Teknolojide bir çok şey, editörünüz ile aranızın iyi olmasına bağlıdır.
+      </p>
+      <h2 id="vim-basamaklari">Vim Basamakları</h2>
+
+      <p>
+        <a
+          href="https://whileimautomaton.net/2008/11/vimm3/operator"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >Kana</a
+        >, Vim öğrenmenin 5 seviyeden oluştuğunu söylüyor.
+      </p>
+      <ul>
+        <li><strong>Seviye 0</strong>: Vim Editörü</li>
+        <li><strong>Seviye 1</strong>: Temel Vim bilgilerini bilmek</li>
+        <li><strong>Seviye 2</strong>: Görsel modu bilmek</li>
+        <li><strong>Seviye 3</strong>: Çeşitli pratik özellikleri kullanmak</li>
+        <li><strong>Seviye 4</strong>: Görsel moda gerek duymamak</li>
+      </ul>
+      <p>
+        Biz de bu yazıda buna benzer adımlardan bahsedeceğiz. Ama ben 4 ana
+        başlık altında anlatmak istiyorum.
+      </p>
+      <ol>
+        <li>
+          <strong>Giriş / Temel Bilgiler</strong>: Vim editöründe nasıl
+          düşünüleceğini anlamak.
+        </li>
+        <li><strong>Temiz Kod</strong>: Düzenli ve temiz kodlama</li>
+        <li>
+          <strong>Gelişmiş</strong>: Vim ile nasıl profesyonel biri olacağınızı
+          anlamak
+        </li>
+        <li>
+          <strong>Vim Tüyoları</strong>: İhtiyacınız olan bazı pratik tüyolar
+        </li>
+      </ol>
+      <h2 id="yapilandirma">Vim Editörünü Yapılandırma</h2>
+
+      <p>
+        Vim yapılandırma konusunda bazı tavsiyelerim olacak. Elbette bunları
+        uygulamak zorunda değilsiniz. Vim'i kurduktan sonra
+        <strong>~/.vimrc</strong> dosyasında bir takım değişiklikler yapmanız
+        iyi olacaktır.
+      </p>
+      <pre><code class="language-bash">
+vi ~/vim/.vimrc
+        </code></pre>
+      <h3 id="vimrc-degisiklikleri"></h3>
+
+      <h3 id="birka-vimrc-de-i-ikli-i">
+        Birkaç <strong>.vimrc</strong> değişikliği
+      </h3>
+      <ul>
+        <li>
+          <strong>ESC Tuşunu Yapılandırın</strong>: İlk olarak, ekleme modundan
+          çıkmak için <strong>&lt;ESC&gt;</strong> tuşu kullanmanın, bence
+          oldukça modası geçmiş. Vim verimlilikle ilgilidir ve mecbur değilseniz
+          bu tip kullanımları görmezden gelebilirsiniz. Böyle kullanmak zorunda
+          değilsiniz.
+        </li>
+      </ul>
+      <p>
+        Aşağıdaki komut, <strong>ESC</strong>'ye basmak yerine
+        <strong>jk</strong> yazabilmenizi sağlar. Siz istediğiniz herhangi
+        değeri atayabilirsiniz. Yazma hızınıza ve parmaklarınızı kullanma
+        biçiminize göre bir değer verebilirsiniz.
+      </p>
+      <pre><code class="language-bash">
+inoremap jk &lt;ESC&gt;
+</code></pre>
+
+      <p>
+        Bu, Vim'de bir eşleme (remapping) komutudur ve "insert" modundayken
+        ardışık olarak "j" ve "k" tuşlarına basıldığında "Escape" (&lt;ESC&gt;)
+        tuşuna basılmış gibi davranmasını sağlar. Kullanıcıların "insert"
+        modundan çıkmak için "Escape" tuşuna uzanmak yerine, daha ergonomik bir
+        şekilde ve daha hızlı bir biçimde "jk" tuş kombinasyonunu kullanarak
+        "normal" moda dönebilmelerine olanak tanır.
+      </p>
+      <h3 id="leader"></h3>
+
+      <ul>
+        <li>
+          <strong>Leader Anahtarınızı Değiştirin</strong>: Leader, kısayollar
+          için bir etkinleştirme anahtarıdır ve oldukça güçlüdür. Yani, örneğin
+          <strong>c</strong> harfiyle bir kısayol yapacaksanız, leader
+          anahtarınızın ardından <strong>c</strong> harfini yazarsınız. Bu
+          yüzden onu sağ serçe parmağınıza denk gelen, bir tuşun üzerine
+          atamanız mantıklı olabilir. Kullandığınız klavyeye göre buna kendiniz
+          karar verebilirsiniz.
+          <pre><code class="language-bash">
+let mapleader = "&lt;sececeginiz-tus&gt;"
+        </code></pre>
+          <p>
+            Küçük ve gereksiz gibi görünen ama hızınızı artıracak detaylara
+            aşağıdaki hususları da ekleyebiliriz.
+          </p>
+        </li>
+      </ul>
+      <pre><code class="language-bash">
+syntax  on  #sözdizimi vurgusu  
+set  number  #satir numaralari  
+set  noswapfile  #swap dosyasini devredisi birak 
+set  hlsearch  #tum sonuclari vurgula 
+set  ignorecase  #aramada buyuk/kucuk harfi yoksay
+set  incsearch  #yazarken arama sonuclarini goster
+</code></pre>
+      <h3 id="eklentiler">Vim Eklenti Yönetimi</h3>
+
+      <p>
+        Eklenti yönetiminizi olabildiğince doğal tutmanızı öneririm. Eklentileri
+        yöneten karmaşık üçüncü taraf işlevlerinden kaçınmak iyi bir tercih
+        olacaktır. Vim editöründe eklentileri kullanmak, Vim 8.x sonrası ve
+        NeoVim'de çok daha kolay. Eklentilerinizi şu dosyaya yazmanız yeterli
+        olacaktır:
+      </p>
+      <pre><code class="language-bash">
+~/.vim/pack/eklenti_klasör_adı /start/&lt;kullanacagınız eklentinin adı&gt;
+</code></pre>
+      <p>
+        Yukarıdaki yöntemi kullanarak istediğiniz herhangi bir eklenti ile
+        oynayabilirsiniz ve bunlar Vim'i açtığınız otomatik olarak yüklenir. Bu
+        yöntemi, daha önceki Vim sürümlerinde ihtiyaç duyduğumuz üçüncü taraf
+        eklenti yönetimi seçeneklerine tercih ederim.
+      </p>
+      <h2 id="vim-dil-yapisi">Vim'in Dil Yapısı</h2>
+
+      <p>
+        Muhtemelen Vim ile ilgili en güzel şeylerden biri, kullandıkça yeni
+        fikirler kazandırmasıdır. Vim, isimler, fiiller ve zarflarla tamamlanmış
+        bir dil gibi işlev görecek şekilde ayarlanmıştır.
+      </p>
+      <blockquote>
+        Burada kullanacağım terimler teknik olarak doğru değil. Yani fiiller,
+        değiştiriciler vb. gibi Vim'de anlatılan konu başlıkları yok. Ancak
+        Vim'in nasıl çalıştığını daha iyi anlamanıza yardımcı olması açısından
+        gayet yararlı olacaktır.
+      </blockquote>
+
+      <h3 id="fiiller">Fiiller</h3>
+
+      <p>
+        Hepinizin bildiği gibi fiiller, gerçekleştirdiğimiz bir takım
+        eylemlerdir. Vim komutlarının bazılarını, fiillere benzetebiliriz.
+      </p>
+      <ul>
+        <li>
+          <strong><code>d</code></strong
+          >: sil
+        </li>
+        <li>
+          <strong><code>c</code></strong
+          >: değiştir
+        </li>
+        <li>
+          <strong><code>y</code></strong
+          >: kopyala
+        </li>
+        <li>
+          <strong><code>v</code></strong
+          >: satır veya karakter için görsel olarak seç
+        </li>
+      </ul>
+      <h3 id="degistiriciler">Değiştiriciler</h3>
+
+      <p>
+        Değiştiriciler, isimlerden önce bir şeyi nasıl yapacağınızı açıklamak
+        için kullanılır.
+      </p>
+      <ul>
+        <li>
+          <strong><code>i</code></strong
+          >: içeride
+        </li>
+        <li>
+          <strong><code>a</code></strong
+          >: etrafında
+        </li>
+        <li>
+          <strong><code>NUM</code></strong
+          >: sayı (örneğin 1, 12, 37)
+        </li>
+        <li>
+          <strong><code>t</code></strong
+          >: bir şeyi arar ve ondan önce durur
+        </li>
+        <li>
+          <strong><code>f</code></strong
+          >: bir şeyi arar ve üzerine gelir
+        </li>
+        <li>
+          <strong><code>/</code></strong
+          >: bir dizeyi bul
+        </li>
+      </ul>
+      <h3 id="isimler">İsimler</h3>
+
+      <p>Burada isim olarak belirttiğimiz şeyler, elbette nesneler olacak.</p>
+      <ul>
+        <li>
+          <strong><code>w</code></strong
+          >: kelime
+        </li>
+        <li>
+          <strong><code>s</code></strong
+          >: cümle
+        </li>
+        <li>
+          <strong><code>)</code></strong
+          >: cümle (ikinci bir yöntem)
+        </li>
+        <li>
+          <strong><code>p</code></strong
+          >: paragraf
+        </li>
+        <li>
+          <strong><code>}</code></strong
+          >: paragraf (ikinci bir yöntem)
+        </li>
+        <li>
+          <strong><code>t</code></strong
+          >: etiket (HTML/XML gibi düşünebilirsiniz)
+        </li>
+        <li>
+          <strong><code>b</code></strong
+          >: blok (programlamadaki gibi düşünebilirsiniz)
+        </li>
+      </ul>
+      <p>
+        Şimdi buraya kadar sınıflandırdığımız bazı komutları nasıl
+        kullanabileceğimizi görelim. Yani artık bir nevi cümle kurmaya
+        başlayacağız.
+      </p>
+      <h3 id="komut-olusturmak">Komut Oluşturmak</h3>
+
+      <p>İki kelimeyi silmek istersek (<strong>delete 2 words</strong>):</p>
+      <pre><code class="language-bash">
+d2w
+</code></pre>
+      <p>
+        Cümle içi değişiklikler (<strong>c</strong>hange
+        <strong>I</strong>nside <strong>S</strong>entence):
+      </p>
+      <pre><code class="language-bash">
+cis
+</code></pre>
+      <p>
+        Bulunduğunuz paragrafı kopyalamak, çekmek (<strong>Y</strong>ank
+        <strong>I</strong>nside <strong>P</strong>aragraph):
+      </p>
+      <pre><code class="language-bash">
+yip
+</code></pre>
+
+      <h2 id="dosya-yapisi">Vim Editöründe Dosyalar ile Çalışmak</h2>
+
+      <p>İşte Vim dosyanız ile çalışmanız için bazı temel bilgiler:</p>
+      <ul>
+        <li>
+          <strong>vim &lt;dosya adiniz&gt;</strong>: dosyanızı
+          <strong>vim</strong> ile açın
+        </li>
+        <li><strong>:w</strong>: değişikliklerinizi dosyaya yazın</li>
+        <li>
+          <strong>:q!</strong>: <strong>vim</strong>'den çıkın, ancak
+          değişiklikleri
+          <strong style="text-decoration: underline">KAYDETMEDEN</strong>!
+        </li>
+        <li>
+          <strong>:wq</strong>: değişikliklerinizi
+          <strong style="text-decoration: underline">KAYDEDEREK</strong>,
+          <strong>vim</strong>'den çıkın.
+        </li>
+        <li>
+          <strong>saveas ~/klasor/dosya_yolu/</strong>:
+          <code>vim</code> dosyanızı, belirtilen adrese kaydedin.
+        </li>
+        <li>
+          <strong>ZZ</strong>: <strong>:wq</strong> yapmanın, farklı bir
+          alternatifi.
+        </li>
+      </ul>
+
+      <h2 id="metin-arama">Metin Arama</h2>
+      <p>
+        Bir editörle yapmanız gereken önemli şeylerden biri, aradığınız metni
+        bulmaktır. Vim'in son derece güçlü arama yetenekleri var ve şimdi
+        bunlardan bazıları hakkında konuşacağız.
+      </p>
+      <h3 id="dizeye-gore-arama">Dizeye Göre Arama</h3>
+
+      <p>
+        Vim'de arama yapmanın en temel yollarından biri,
+        <strong>/</strong> komutunu girmek ve ardından ne aradığınızı yazıp
+        <strong>ENTER</strong> tuşuna basmaktır.
+      </p>
+      <pre><code class="language-bash">
+/include&lt;CR&gt;        
+</code></pre>
+      <p>
+        Aramanızı yaptıktan sonra, sonucun bir sonraki örneğine gitmek için
+        <strong>n</strong> (küçük n)'ye , bir önceki örneğine gitmek için
+        <strong>N</strong> (büyük N) 'ye basabilirsiniz.
+      </p>
+      <p>
+        Ayrıca <strong>/</strong> yerine, <strong>?</strong> kullanarak, geriye
+        doğru arama yapabilirsiniz.
+      </p>
+
+      <h2 id="Metinde Dolaşmak">Metinde Dolaşmak</h2>
+
+      <h3 id="Temel Dolaşım">Temel Dolaşım</h3>
+
+      <ul>
+        <li><strong>j</strong>: bir satır aşağı git</li>
+        <li><strong>k</strong>: bir satır yukarı git</li>
+        <li><strong>h</strong>: bir karakter sola git</li>
+        <li><strong>l</strong>: bir karakter sağa git</li>
+      </ul>
+      <p>
+        Bu kullanımın yeni başlayanlara biraz tuhaf geleceğini biliyorum. Ama
+        biraz kullandıktan sonra alışacağınıza garanti verebilirim.
+      </p>
+      <h3 id="aynı-satir">Aynı Hizada Hareket Etmek</h3>
+
+      <p>
+        Aşağıdaki komutlar ile bulunduğunuz satır içerisinde kolayca hareket
+        edebilirsiniz.
+      </p>
+      <ul>
+        <li><strong>0</strong>: satırın başına git</li>
+        <li><strong>$</strong>: satırın sonuna git</li>
+      </ul>
+      <h3 id="kelime-ile-hareket">Kelime Bazında Hareket Etmek</h3>
+
+      <p>Vim'de kelime bazında da hareket edebilirsiniz.</p>
+      <ul>
+        <li><strong>w</strong>: bir kelime ileri git</li>
+        <li><strong>b</strong>: bir kelime geri git</li>
+        <li><strong>e</strong>: kelimenin sonuna git</li>
+      </ul>
+      <p>
+        Büyük harf kullandığınızda, dizeyi iki kelimeye bölebilecek bazı
+        engelleri yok sayarsınız. Bağlaçlar vs.
+      </p>
+      <ul>
+        <li><strong>W</strong>: bir kelime ileri git</li>
+        <li><strong>B</strong>: bir kelime geri git</li>
+      </ul>
+      <h3 id="cumle-paragraf">Cümle veya Paragrafa Göre Hareket Etme</h3>
+
+      <ul>
+        <li><strong>)</strong>: bir cümle ileri git</li>
+        <li><strong>}</strong>: bir paragraf ileri git</li>
+      </ul>
+      <h3 id="ekranda-hareket">Ekran İçinde Hareket Etme</h3>
+
+      <ul>
+        <li><strong>H</strong>: ekranın en üstüne git</li>
+        <li><strong>M</strong>: ekranın ortasına gitme</li>
+        <li><strong>L</strong>: ekranın altına gitme</li>
+        <li><strong>gg</strong>: dosyanın en üstüne git</li>
+        <li><strong>G</strong>: dosyanın altına git</li>
+        <li><strong>CTRL + U</strong>: yarım ekran yukarı git</li>
+        <li>
+          <strong><code>CTRL + D</code></strong
+          >: yarım ekran aşağı git
+        </li>
+        <li><strong>CTRL + F</strong>: sayfa aşağı</li>
+        <li><strong>CTRL + B</strong>: sayfa yukarı</li>
+      </ul>
+      <h3 id="diger-hareketler">Diğer Hareketler</h3>
+
+      <ul>
+        <li>
+          <strong><code>CTRL + i</code></strong
+          >: önceki navigasyon konumunuza atlayın
+        </li>
+        <li>
+          <strong><code>CTRL + o</code></strong
+          >: bulunduğunuz yere geri dönün
+        </li>
+        <li>
+          <strong><code>satır_numarası + H</code></strong
+          >: belirli bir satır numarasına git
+        </li>
+        <li>
+          <strong><code>CTRL + E</code></strong
+          >: ekranı bir satır yukarı kaydır
+        </li>
+      </ul>
+
+      <h2 id="metin-degistirme">Metin Değiştirme</h2>
+
+      <p>
+        Şimdiye kadar hep hareketlerden bahsettik. Artık metnimiz üzerinde bazı
+        değişiklikler yapmanın vakti geldi.
+      </p>
+
+      <img
+        src="vim-editor-modlari.jpg"
+        alt="Vim Editör Modları"
+        style="width: 100%"
+      />
+      <p>
+        Kavramamız gereken ilk şey, mod kavramıdır. İlk başta biraz mantıksız
+        gelebilir ancak yine zamanla alışacağınız bir konudur.
+      </p>
+      <ul>
+        <li>
+          <strong>Normal Mod</strong>: Yeni başlayanlar için Vim ile ilgili en
+          sinir bozucu şeylerden biri, onu açıp yazmaya başlayamamanızdır.
+          Normal Mod, genellikle komutları girdiğiniz yer olduğu için Komut Modu
+          olarak da bilinir.
+        </li>
+        <li>
+          <strong>Ekleme Modu</strong>: Dosyanızda değişiklik yaptığınız yerdir
+          ve Normal Moddan Ekleme Moduna geçmenin bir çok yolu vardır.
+          Endişelenmenize hiç gerek yok, çünkü biraz pratikle bunların hepsi
+          gülünç derecede basitleşiyor.
+        </li>
+        <li>
+          <strong>Görsel Mod</strong>: Metinleri seçmenin yollarından biridir.
+          Normal Mod'a çok benzer. Metni hem karakter hem de satır bazında
+          seçebilirsiniz. Görsel Modun amacı, seçtiğiniz tüm içerik üzerinde,
+          bazı işlemler gerçekleştirmektir.
+        </li>
+        <li>
+          <strong>Ex Mod</strong>: Bir <strong>:</strong> isteği aldığınız ve
+          komutlar girebileceğiniz bir moddur.
+        </li>
+      </ul>
+
+      <h3 id="bicimlendirme">Metni Biçimlendirme</h3>
+
+      <p>
+        Metni hızlı bir şekilde biçimlendirmek oldukça yararlıdır. Bunu
+        aşağıdaki komutla kolayca yapabilirsiniz:
+      </p>
+      <p><strong>Mevcut paragrafı biçimlendir</strong>:</p>
+      <pre><code class="language-bash">
+gq ap
+</code></pre>
+      <p>
+        <strong>gq</strong>: Ortamınıza bağlı olarak, güzel ve düzenli bir yapı
+        için çalışır.
+      </p>
+      <p>
+        <strong>ap</strong>: Paragraf etrafındaki standart metin nesnesidir.
+      </p>
+      <h3 id="metni-silme">Metni Silme</h3>
+
+      <p>
+        Artık metni nasıl değiştireceğimizi bildiğimize göre, düz silme
+        işlemlerinin nasıl yapılacağını görelim.
+      </p>
+      <p><strong>Temel silme seçenekleri</strong></p>
+      <ul>
+        <li><strong>x</strong>: imlecin altındaki karakteri sil</li>
+        <li><strong>X</strong>: imleçten önceki karakteri sil</li>
+        <li><strong>dd</strong>: mevcut satırı sil</li>
+        <li><strong>D</strong>: satırın sonuna kadar sil</li>
+        <li>
+          <strong>J</strong>: mevcut satırı bir sonraki ile birleştir ve
+          aradakileri sil
+        </li>
+      </ul>
+      <h2 id="geri-al">Geri Al ve Tekrarla</h2>
+
+      <p>
+        Geri al ve tekrarla özellikleri bir metin düzenleyicinin olmazsa
+        olmazlarıdır. Elbette Vim kullanırken de çok sık kullanacağımız
+        özellikler arasındalar.
+      </p>
+      <ul>
+        <li><strong>u</strong>: son eyleminizi geri alın</li>
+        <li><strong>CTRL + r</strong>: son eyleminizi tekrarlayın</li>
+      </ul>
+      <p>
+        Her iki komut da siz son kayda geri gidene kadar tekrar tekrar
+        kullanılabilir.
+      </p>
+
+      <h3 id="kopyala">Kopyala Yapıştır</h3>
+
+      <p>
+        Vim, metni hızlı bir şekilde kopyalayıp yapıştırabilme konusunda gayet
+        iyi çalışır.
+      </p>
+      <p>
+        Ancak Vim, beklenenden biraz farklı kopyalama yapıyor. Beklenildiği gibi
+        komutumuz <strong>c</strong> değil. Hatırlayacak olursanız
+        <strong>c</strong>, değişim için kullanılıyordu. Vim bunun yerine
+        <strong>y</strong> kopyalama komutunu kullanıyor.
+      </p>
+      <ul>
+        <li><strong>y</strong>: seçili olanı kopyala</li>
+        <li><strong>yy</strong>: mevcut satırı kopyala</li>
+      </ul>
+
+      <blockquote>
+        Unutmayın, tıpkı diğer herhangi bir kopyalama işleminde olduğu gibi,
+        kaynak metinle uğraşmıyorsunuz, sadece başka bir kopya yapıyorsunuz.
+      </blockquote>
+
+      <h3 id="yapistir">Metni Yapıştırma</h3>
+
+      <p>
+        Metni yapıştırma konusunda temel olarak <strong>p</strong> komutu
+        kullanır. Yani, <strong>dd</strong> kullanarak bir satırı silerseniz,
+        <strong>p</strong> kullanarak tekrar yapıştırabilirsiniz.
+      </p>
+      <blockquote>
+        Yapıştırmayla ilgili hatırlanması gereken bir şey de, yapıştırma
+        işleminin genellikle imlecinizden hemen sonra başlaması ve
+        kopyaladığınız karakterleri, kelimeleri, satırları veya sütunları
+        yapıştırmasıdır. Ayrıca, evrensel geri alma komutu
+        <strong>u</strong> ile herhangi bir yapıştırmayı geri alabileceğinizi
+        unutmayın.
+      </blockquote>
+
+      <ul>
+        <li>
+          <strong>p</strong>: kopyalanan veya silinen metni mevcut imleç
+          konumundan sonra yapıştır
+        </li>
+        <li>
+          <strong>P</strong>: kopyalanan veya silinen metni mevcut imleç
+          konumundan önce yapıştır
+        </li>
+      </ul>
+      <strong>Metin satırlarını değiştirme</strong>:
+      <pre><code class="language-bash">
+ddp
+</code></pre>
+      <p>
+        Bu, iki metin satırının konumunu değiştirmek için kullanabileceğiniz
+        hızlı bir numaradır.
+      </p>
+      <h3 id="denetim">Yazım Denetimi</h3>
+
+      <p>
+        Yazım denetimi konusunda Vim oldukça başarılıdır. Öncelikle
+        <strong>conf</strong> dosyamızdaki seçeneği ayarlamamız gerekiyor.
+      </p>
+      <p>
+        Bunun için <strong>~/.vimrc</strong> dosyasına aşağıdaki satırı ekleyin:
+      </p>
+      <pre><code class="language-bash">
+:set spell spelllang=tr
+</code></pre>
+      <p>
+        Bu Türkçe yazım denetimi konusunda size yardımcı olacaktır. Aynı şeyi
+        diğer diller içinde yapabilirsiniz.
+      </p>
+      <h4 id="yanlis-yazilmis">Yanlış yazılmış kelimeleri bulmak</h4>
+
+      <p>
+        <strong>conf</strong> dosyanızda yazımı etkinleştirdiğinizde, yanlış
+        yazılan kelimelerin altı sizin için otomatik olarak çizilir. Ek olarak,
+        <strong>:set spell</strong> ve <strong>:set nospell</strong> komutlarını
+        çalıştırarak da etkinleştirebilir veya devre dışı bırakabilirsiniz.
+      </p>
+
+      <h2 id="yer-degistirme">Yer Değiştirme</h2>
+
+      <p>
+        Vim editörün, bir diğer güçlü özelliği de güçlü değiştirmeler
+        yapabilmesidir. Bu işlem, önce ne aradığınızı, sonra neye
+        değiştireceğinizi, sonra da değişikliğin kapsamını belirleyerek yapılır.
+      </p>
+      <p>
+        Örneğin, tüm satırlarda <strong>foo</strong> ifadesini
+        <strong>boo</strong> ile değiştirmek için:
+      </p>
+      <pre><code class="language-bash">:%s /foo/boo/g
+</code></pre>
+      <p>
+        Sadece mevcut satırda <strong>foo</strong> ifadesini
+        <strong>boo</strong> ile değiştirmek için:
+      </p>
+      <pre><code class="language-bash">:s /foo/boo/g
+</code></pre>
+      <p>
+        Bunlara benzer birçok farklı kullanım var ancak, yukarıda görmüş
+        olduklarınız en temel olanlar.
+      </p>
+
+      <h2 id="vim-gorsel-mod">Vim Görsel Mod Kullanımı</h2>
+
+      <p>
+        Belki de Görsel Mod hakkında söylenebilecek en iyi şey, şimdiye kadar
+        öğrendiğiniz her şeyin gücüne güç katması olurdu. Vim görsel mod,
+        vurgulanan metne komutlar uygulamanıza izin verir.
+      </p>
+      <p>
+        Görsel moda <strong>v</strong> ile girersiniz. Bunun için üç farklı
+        seçeneğiniz vardır:
+      </p>
+      <ul>
+        <li><strong>karakter tabanlı</strong> :<strong>v</strong></li>
+        <li><strong>satır tabanlı</strong> :<strong>V</strong></li>
+        <li><strong>paragraf</strong> :<strong>CTRL + v</strong></li>
+      </ul>
+      <blockquote>
+        Aşağıdaki komutlar <strong>v</strong> ile başlıyorlar. Bu sizi görsel
+        moda sokacaktır. Sonrasında gelen harfler ise görsel modda
+        gerçekleştireceğiniz eylemler içindir.
+      </blockquote>
+      <p>Parantezin içini seçin</p>
+      <pre><code class="language-bash">vi(
+</code></pre>
+      <p>Köşe parantezin içini seçin</p>
+      <pre><code class="language-bash">vi[
+</code></pre>
+      <p>
+        Ayrıca iki seviye seçmek için aşağıdakine benzer bir sayı da
+        ekleyebilirsiniz.
+      </p>
+      <pre><code class="language-bash">v2i[
+</code></pre>
+
+      <h2 id="makro">Vim Makro Kullanımı</h2>
+
+      <p>Genelde makroların korkutucu olduğu düşünülür. Gerçekten değiller.</p>
+      <ul>
+        <li>
+          <strong>qa</strong>: <strong>a</strong> adlı bir makro kaydetmeye
+          başlayın
+        </li>
+        <li><strong>q</strong>: kaydı durdur</li>
+        <li><strong>@a</strong>: makroyu oynat</li>
+      </ul>
+      <p>
+        Basit, değil mi? Birden çok kayıtta saklanan birden çok makro olabilir.
+      </p>
+      <blockquote>
+        Örneğin, <strong>a</strong>, <strong>b</strong>,
+        <strong>c</strong> isminde kayıtlar oluşturabilir sonra da onları
+        <strong>@a</strong>, <strong>@b</strong> ve <strong>@c</strong> ile
+        oynatabilirsiniz.
+      </blockquote>
+
+      <h4 id="neden-makro">Neden Makro</h4>
+
+      <p>Bunları okuyorken aklınıza şu soru gelmiş olabilir:</p>
+      <blockquote>
+        Nokta komutuyla görsel seçim ve tekrar bu kadar güçlüyse, neden makrolar
+        kullanılsın ki?
+      </blockquote>
+      <p>
+        Harika bir soru ama cevap biraz karmaşık. Makrolar, yapabileceğiniz
+        hemen hemen her şeyi yapabilirler. Ama aydınlatıcı olması için aşağıdaki
+        iş akışına bir bakalım:
+      </p>
+      <ol>
+        <li>bir kelimeyi satırda ara</li>
+        <li>sözcüğün sonuna git ve <strong>-maker</strong> ekle</li>
+        <li>satırın başına git ve iki nokta üst üste ekle</li>
+        <li>satırın sonuna git ve bir nokta ekle</li>
+        <li>satırın sonundaki tüm boş alanları sil</li>
+      </ol>
+      <p>
+        50 bin satırlık bir kodda tüm bunları yapmak gerçekten sabır isterdi.
+      </p>
+      <p>
+        Ancak Vim ile bu eylemleri bir kez gerçekleştirir ve her satırda tekrar
+        oynatabilirsiniz.
+      </p>
+
+      <h2 id="ozet">Özetlemek Gerekirse</h2>
+
+      <p>Sonuç olarak bu rehberden çıkarılmasını umduğum iki madde var:</p>
+      <ol>
+        <li>Vim <strong>öğrenilebilir</strong></li>
+        <li>Vim <strong>güçlüdür</strong></li>
+      </ol>
+      <p>
+        Burada ele alınan temel bilgilerle kısmen bile rahat ederseniz,
+        yazmaktan daha fazla keyif alacağınızı düşünüyorum. Metinlerle ne kadar
+        rahat uğraşırsanız, fikirlerle o kadar rahat başa çıkarsınız ve bence bu
+        üretim aşamasında gerçekten önemli bir şey.
+      </p>
+      <p>
+        Her şeyden çok, bu yüzden metin düzenleyicinize hakim olmalısınız.
+        Fikirleri yakalarken kendinizi güçlü hissetmek istersiniz.
+      </p>
+    </article>
+
+    <footer>
+      <p>2024 &copy; <a href="/">Hackod</a></p>
+    </footer>
+  </body>
+</html>

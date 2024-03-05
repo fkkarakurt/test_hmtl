@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Hackod, yazılım mühendisliği, siber güvenlik stratejileri, işletim sistemleri ve yapay zeka programlama konularında uzmanlaşmıştır. Profesyoneller ve sektör liderleri için derinlemesine analizler ve yenilikçi çözümler sunar."
+      content="Hackod'un blog sayfasında, yazılım geliştirme, siber güvenlik ve programlama dünyasına dair blog yazıları bulacaksınız. Bu blog yazılarının esas amacı, bu alandaki Türkçe kaynak ekosistemine katkı sağlamaktır."
     />
 
     <!-- Favicon -->
@@ -43,13 +43,10 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://hackod.com" />
-    <meta
-      property="og:image"
-      content="https://hackod.com/blog/vpython-kullanan-basit-fizik-animasyonlari/feature.jpg"
-    />
+    <meta property="og:image" content="http://hackod.com/og-image.jpg" />
     <meta
       property="og:description"
-      content="Yazılım mühendisliği, siber güvenlik, işletim sistemleri, yapay zeka programlama konularında profesyonel içgörüler ve çözümler."
+      content="Yazılım mühendisliği, siber güvenlik, işletim sistemleri, yapay zeka programlama konularında profesyonel içerikler."
     />
 
     <!-- Twitter Card Data -->
@@ -61,12 +58,9 @@
     />
     <meta
       name="twitter:description"
-      content="Sektör profesyonelleri için yazılım mühendisliği, siber güvenlik ve ileri teknoloji konularında derinlemesine analizler."
+      content="Sektör profesyonelleri için yazılım mühendisliği, siber güvenlik ve ileri teknoloji konularında profesyonel içerikler."
     />
-    <meta
-      name="twitter:image"
-      content="https://hackod.com/blog/vpython-kullanan-basit-fizik-animasyonlari/feature.jpg"
-    />
+    <meta name="twitter:image" content="http://hackod.com/twitter-image.jpg" />
 
     <title>Hackod - Yazılım ve Teknoloji Alanında Lider Kaynak</title>
 
@@ -75,19 +69,19 @@
       {
         "@context": "https://schema.org",
         "@type": "ResearchProject",
-        "name": "Hackod",
-        "url": "https://hackod.com",
+        "name": "Hackod | Blog",
+        "url": "https://hackod.com/blog",
         "logo": "https://hackod.com/logo.png"
       }
     </script>
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
     <header>
       <section class="ascii-header">
         <h1 style="display: none">
-          Hackod | Yazılım Geliştirme ve Programlama Kaynağı
+          Hackod | Yazılım Geliştirme ve Programlama | Blog
         </h1>
         <a href="/" style="text-decoration: none">
           <pre class="logo-pre">
@@ -109,41 +103,39 @@
 
       <nav>
         <ul class="navigation">
-          <li><a href="/blog">Blog</a></li>
+          <li>
+            <a href="" style="text-decoration: underline">Blog</a>
+          </li>
         </ul>
       </nav>
     </header>
-
     <main>
-      <section>
-        <h2>Hackod | Türkçe Kaynak</h1>
+      <h1>Hackod | Blog Yazıları</h1>
+      <section class="blog-info">
         <p>
-          Hackod, bir içerik ve blog sitesi olarak, Türkçe kaynak ve içerik
-          boşluğunu doldurmayı amaçlıyor. Programlama, mühendislik ve yazılım
-          dilleri konusunda kaliteli Türkçe içerikler sunarak, Türkiye'deki ve
-          Türkçe konuşan coğrafyalardaki öğrencilere, profesyonellere ve
-          teknoloji meraklılarına yardımcı olmayı hedefliyor. 
-        </p>
-
-        <p>
-          Mevcut içerik havuzu, yaratıcı düşünme ve problem çözme yeteneklerini
-          geliştirmek, gerçek dünya problemleriyle başa çıkma becerilerini
-          kazandırmak amacıyla tasarlanmıştır. Bu içerikler, teknoloji
-          dünyasındaki yenilikleri takip etmek ve bu yeniliklerin bir parçası
-          olmak isteyen herkes için erişilebilir ve anlaşılır olacak şekilde
-          hazırlanmıştır.
-        </p>
-
-        <h2>Yazılım ve Mühendislik: Bilgi Çağının Temelleri</h2>
-        <p>
-          Mühendislik ve teknoloji, modern dünyayı şekillendiren ve ekonomik ile
-          sosyal dönüşümlere öncülük eden temel alanlardır. Hackod, bu alanlarda
-          Türkçe içerikler sunarak, her yaş ve seviyeden insanın mühendislik ve
-          yazılım dünyasına adım atabileceği, yeteneklerini keşfedebileceği ve
-          bu bilgi çağında aktif rol alabileceği bir platform sağlamayı
-          hedeflemektedir.
+          Hackod'un blog sayfasında, yazılım geliştirme, siber güvenlik ve
+          programlama dünyasına dair blog yazıları bulacaksınız. Bu blog
+          yazılarının esas amacı, bu alandaki Türkçe kaynak ekosistemine katkı
+          sağlamaktır.
         </p>
       </section>
+      <ul class="blog-list">
+        <li>
+          <a href="/blog/nodejs-ile-veri-sifreleme">NodeJS ile Veri Şifreleme</a>
+        </li>
+        <li>
+          <a href="/blog/vpython-kullanan-basit-fizik-animasyonlari"
+            >VPython Kullanan Basit Fizik Animasyonları</a
+          >
+        </li>
+        <li>
+          <a href="dogrusal-regresyona-giris/">Doğrusal Regresyona (Linear Regression) Teknik Giriş</a>
+        </li>
+        <li>
+          <a href="vim-nasil-kullanilir">Vim Nasıl Kullanılır?</a>
+        </li>
+        <!-- Diğer blog yazıları -->
+      </ul>
     </main>
     <footer>
       <p>2024 &copy; <a href="/">Hackod</a></p>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content=" Python ve VPython ile 3D fizik simülasyonları kodlamanın adım adım yolunu sunar; başlangıçtan ileri seviyeye herkes için ideal."
+    />
+
+    <!-- Social Media Meta Tags -->
+    <meta
+      property="og:title"
+      content="Hackod - VPython Kullanan Basit Fizik Animasyonları"
+    />
+    <meta property="og:site_name" content="Hackod" />
+    <meta
+      property="og:url"
+      content="https://hackod.com/blog/vpython-kullanan-basit-fizik-animasyonlari"
+    />
+    <meta
+      property="og:description"
+      content="Python ile VPython kullanarak 3D fizik simülasyolarını nasıl kodlarsınız?"
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:image"
+      content="https://hackod.com/blog/vpython-kullanan-basit-fizik-animasyonlari/feature.jpg"
+    />
+
+    <!-- Twitter Card Data -->
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Hackod - VPython Kullanan Basit Fizik Animasyonları"
+    />
+    <meta name="twitter:site" content="@hackodsocial" />
+    <meta
+      name="twitter:description"
+      content="Python ile VPython kullanarak 3D fizik simülasyolarını nasıl kodlarsınız?"
+    />
+    <meta
+      name="twitter:image"
+      content="https://hackod.com/blog/vpython-kullanan-basit-fizik-animasyonlari/feature.jpg"
+    />
+    <meta name="twitter:image:alt" content="Python 3D simülasyon geliştirme" />
+
+    <title>Hackod - VPython Kullanan Basit Fizik Animasyonları</title>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://hackod.com/blog/vpython-kullanan-basit-fizik-animasyonlari/"
+        },
+        "headline": "VPython Kullanan Basit Fizik Animasyonları",
+        "image": "https://hackod.com/blog/vpython-kullanan-basit-fizik-animasyonlari/feature.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "Fatih Küçükkarakurt",
+          "url": "https://linkedin.com/in/fkkarakurt"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Hackod",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://hackod.com/favicon/mstile-150x150.png"
+          }
+        },
+        "datePublished": ""
+      }
+    </script>
+
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="../../code.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <script>
+      hljs.highlightAll();
+    </script>
+  </head>
+  <body>
+    <header>
+      <section class="ascii-header">
+        <h1 style="display: none">
+          Hackod | Yazılım Geliştirme ve Programlama | Blog
+        </h1>
+        <a href="/" style="text-decoration: none">
+          <pre class="logo-pre">
+  __    __                      __                        __ 
+  /  |  /  |                    /  |                      /  |
+  $$ |  $$ |  ______    _______ $$ |   __   ______    ____$$ |
+  $$ |__$$ | /      \  /       |$$ |  /  | /      \  /    $$ |
+  $$    $$ | $$$$$$  |/$$$$$$$/ $$ |_/$$/ /$$$$$$  |/$$$$$$$ |
+  $$$$$$$$ | /    $$ |$$ |      $$   $$<  $$ |  $$ |$$ |  $$ |
+  $$ |  $$ |/$$$$$$$ |$$ \_____ $$$$$$  \ $$ \__$$ |$$ \__$$ |
+  $$ |  $$ |$$    $$ |$$       |$$ | $$  |$$    $$/ $$    $$ |
+  $$/   $$/  $$$$$$$/  $$$$$$$/ $$/   $$/  $$$$$$/   $$$$$$$/ 
+  
+                                                                          
+               </pre
+          >
+        </a>
+      </section>
+
+      <nav>
+        <ul class="navigation">
+          <li>
+            <a href="/blog">Blog</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <article>
+      <section>
+        <h1 class="article-main-header">
+          VPython Kullanan Basit Fizik Animasyonları
+        </h1>
+      </section>
+      <p>
+        Fizik deneyleri, genellikle pahalı ve gürültülü ekipmanlara sahip
+        olmanızı gerektirdiğinden, gerçek hayatta uygulaması zor olabilen bir
+        konudur. Günümüzde deneyler daha karmaşık hale geldikçe, simülasyon ve
+        modelleme yöntemleri, verileri analiz etmek ve yorumlamak için ilgi
+        çekici bir alan haline geldi. Bu makale, simülasyonlar için 3D Python
+        ortamı olan <strong>VPython</strong> kullanarak fiziksel sistemleri
+        modellemeye başlamanızı amaçlamaktadır.
+      </p>
+      <p>
+        Az sonra manyetik bir alandaki yüklü bir parçacığın sarmal hareketini
+        modellemek için Python ve GlowScript ile bir 3D fizik simülasyonu
+        oluşturacağız.
+      </p>
+      <h2>Manyetik bir alanda yüklü parçacıkların hareketlerini simüle etme</h2>
+      <p>
+        Elektromanyetizma, elektrik ve manyetik alanların nasıl etkileşime
+        girdiğinin incelenmesidir. Bu makalede, yüklü parçacıkların manyetik bir
+        alanda nasıl hareket ettiğine bakıp, biraz da elektromanyetizma
+        konuşacağız.
+      </p>
+      <p>
+        Yüklü parçacıklar dış manyetik alana dik bir hızla hareket ettiklerinde,
+        hıza sürekli dik olan manyetik kuvvet, merkezcil kuvvet olarak hareket
+        ettiğinden, dairesel hareket gerçekleştirir. Buraya kadar bir problem
+        yok. Peki, ya hız, manyetik alana tam olarak dik değilse? Bu, manyetik
+        alana dik olan hız bileşeninin, yüklü parçacığın dairesel hareket
+        halinde olması için merkezcil kuvveti sağlamaya devam edeceği anlamına
+        gelir. Öte yandan, manyetik alana paralel hız bileşeni, merkezcil
+        ivmesinde ve yönünde herhangi bir değişiklik yaşamayacaktır. Bu nedenle,
+        aşağıda gösterildiği gibi sarmal bir yol gözlemleyeceğiz.
+      </p>
+      <h2>VPython'a Giriş</h2>
+      <p>
+        Yukarıda bahsettiğimiz fizik fenomenini yeniden yaratmak için VPython
+        kullanacağız. VPython, bu fenomenin 3 boyutlu görselleştirmelerini
+        gerçekleştirmemize izin verir. VPython için çevrimiçi bir kod editörü
+        olan
+        <a
+          href="https://glowscript.org/"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >GlowScript</a
+        >'i kullanacağız.
+      </p>
+      <p>
+        Bağlantıya tıkladıktan sonra, "<strong>Sign in</strong>" butonuna
+        tıklayın ve <strong>Google Hesabınızı kullanarak</strong> giriş yapın.
+        Ardından GlowScript sayfasındaki "<strong>here</strong>" butonuna
+        tıklayın ve başlamak için "<strong>Create New Program</strong>"
+        sekmesine tıklayın.
+      </p>
+      <p>
+        Alternatif olması açısından, VPython'u yerel olarak çalıştırmak
+        isteyebilirsiniz. Bu durumda VPython modülünü içe aktarmanız
+        gerekecektir.
+        <a
+          href="https://www.glowscript.org/docs/VPythonDocs/index.html"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >VPython/Glowscript belgelerini</a
+        >
+        okumanızı öneririm.
+      </p>
+      <h3>Ortamı Oluşturmak</h3>
+      <p>
+        Herhangi bir hareketli parçacıkla uğraşmaya başlamadan önce, ilk olarak
+        çalışma alanımızı tanımlamalıyız. Aşağıdaki kod, kullanacağımız sahnenin
+        boyutunu tanımlayarak VPython'da nasıl bir sahne oluşturabileceğimizi
+        göstermektedir.
+      </p>
+      <pre><code class="language-python">
+scene = display(width=1500, height=600)
+        </code></pre>
+      <p>
+        İlk olarak, deneyimizin sınırlarını tanımlamaya başlayalım. Deneyimizi
+        kapalı bir küp içerisinde gerçekleştireceğiz. Bu küpün kenarlarını yine
+        küplerden oluşturacağız. Yani kendi konteynerimizi çizeceğiz.
+      </p>
+      <pre><code class="language-python">
+xlen, ylen , zlen = 100, 100, 100
+boundaries = [
+box(pos = vector(0,-ylen/2,0), size = vector(xlen, .2, zlen)),
+box(pos = vector(0,ylen/2,0), size = vector(xlen, .2, zlen)),
+box(pos = vector(-xlen/2,0,0), size = vector(.2, ylen, zlen)),
+box(pos = vector(xlen/2,0,0), size = vector(.2, ylen, zlen)),
+box(pos = vector(0,0,-zlen/2), size = vector(xlen, ylen, .2))
+]
+                  </code></pre>
+      <p>
+        Burada küp konteynerimizin uzunluğunu 100 birim olacak şekilde
+        belirlemiş olduk. Ayrıca konteynerimizin kenarlarını oluşturmak için bir
+        box listesi tanımladık. Şimdi buradaki her bir "<strong>box</strong>"
+        argümanının ne yaptığına göz atalım.
+      </p>
+      <ul>
+        <li>
+          <strong>pos</strong>, bağımsız değişken kutuların merkezlerinin, konum
+          vektörünü temsil eder, bir vektördür.
+        </li>
+        <li>
+          <strong>size</strong>, 3 vektör değeri alır. x, y ve z eksenlerinde
+          değerleri vardır. Kutularımızın kalınlığının 0.2 birim olduğuna dikkat
+          edelim.
+        </li>
+      </ul>
+
+      <p>
+        Artık deneyimizi devam ettirmek için bir konteynerimiz var. Gerçek
+        nesneler yaratmaya geçmeden önce, birkaç fizik sabiti tanımlayalım. Bu
+        tanımlayacağımız sabitlerin ne anlama geldiğini açıklayacağım. Ancak bu
+        noktada, tanımlayacağımız değerlerin ne işe yaradığına dair kabaca bir
+        fikir sahibi olmak yeterli olacaktır.
+      </p>
+      <pre>
+          <code class="language-python">
+dt = .001 #zaman adımı
+Bfield = 5 #manyetik alan gücü
+v_mag = 20 #protonun hızının büyüklüğü
+Q = 0.5 #rastgele birimlerde protonun yükü
+theta = pi/4 #protonun fırlatma açısı
+v = vector(v_mag*cos(theta), v_mag*sin(theta), 0) #hız vektörü
+B = vector(0,-Bfield,0) #manyetik alan vektörü
+starting_point = vector(0,-ylen/2 + 1,0) #protonun başlangıç pozisyonu vektörü
+          </code>
+        </pre>
+      <h3>Python Sınıflarını kullanarak nesneleri tanımlama</h3>
+      <p>
+        Bu bölümde, manyetik bir alanda seyahat eden protonumuzu temsil etmek
+        için bir Python sınıfı kullanacağız.
+      </p>
+      <pre><code class="language-python">
+class create_proton:
+    def __init__(self, v): #v hızı temsil eden bir vektördür
+        self.v = v
+        self.proton = sphere(pos = starting_point, color = color.red, radius = 1, make_trail=True, trail_type="curve")
+        self.a = vector(0,0,0)
+
+    def move(self): #protonu küçük adımlarla hareket ettirir
+        self.a = Q * cross(self.v, B) # F = ma = q v x B
+        self.v += self.a * dt #a = dv/dt
+        self.proton.pos += self.v * dt #v = dx/dt
+
+    def reset_proton(self): #proton konumunu ve yolunu sıfırlar
+        self.proton.pos = starting_point
+        self.v = v
+        self.proton.clear_trail()
+        self.a = vector(0,0,0)
+
+    def check_collision(self): #sınırları kontrol eder
+        if self.proton.pos.y < ylen / 2 and self.proton.pos.x < xlen/2 and self.proton.pos.y > -ylen/2 and self.proton.pos.x > -xlen/2 and self.proton.pos.z > -zlen/2 and self.proton.pos.z < zlen/2:
+            return True
+        else:
+            return Falseproton = create_proton(v) # 'proton' değişkenini yaratır
+        </code></pre>
+      <p>
+        Bu kod parçacığında yer alan
+        <strong>create_proton</strong> sınıfımızın 4 işlevi vardır.
+      </p>
+      <ol>
+        <li>
+          <strong>init</strong>
+          <p>
+            Bu işlev, sınıf oluşturulduğunda çağrılacaktır. Bu, protonun
+            varsayılan hız vektörünü <strong>self.v</strong> olarak ayarlar.
+            VPython'da küre olarak modellenen protonu da oluşturuyoruz. Protonun
+            yarıçapını tanımladık ve protonun yolunun arkasına bir iz çizmek
+            için kullanacağımız ayarı açtık.
+          </p>
+        </li>
+        <li>
+          <strong>move</strong>
+          <p>
+            Bu işlev, protonu belirli bir zamanda küçük bir artışla hareket
+            ettirir. İvme (<strong>self.a</strong>),
+            <strong>F = Q (v x B)</strong> şeklinde belirtilen
+            <strong>Lorentz Kuvvet Yasasına</strong> göre hesaplanır. Bu nedenle
+            <strong>v</strong> vektörlerinin çapraz çarpımını kullanırız.
+            <strong>B</strong> ise sonucun ivmesini ve yönünü belli eder.
+            Hızların bileşenlerini çözmeye gerek yoktur. Protonu her seferinde
+            küçük bir adımla hareket ettirdiğimiz, hızı ve yer değiştirmeyi
+            kademeli olarak güncellediğimiz için zaman adımlarımızın devreye
+            girdiği yer de burasıdır. Böylece, küçük zaman adımını
+            (<strong>dt</strong>), protonun yer değiştirmesi ve hızıyla
+            çarparız.
+          </p>
+        </li>
+        <li>
+          <strong>reset_proton</strong>
+          <p>
+            Bu işlev, denemeyi daha sonra birçok kez çalıştırabilmemiz için tüm
+            parametreleri sıfırlar.
+          </p>
+        </li>
+        <li>
+          <strong>check_collision</strong>
+          <p>
+            İçinde bulunulan büyük küpün duvarlarıyla çarpışma yoksa, bu işlev
+            bize <strong>true</strong> döndürür. Değilse,
+            <strong>false</strong> döndürür ve program sona erer. Bu noktada,
+            "<strong>Run this program</strong>" butonuna tıklarsanız, aşağıdaki
+            gibi bir yapı ile karşılaşmalısınız.
+          </p>
+        </li>
+      </ol>
+      <img src="kirmizi-kure.png" alt="VPython ile çizdirilen kırmızı küre" />
+      <h3>Başlatma işlevi</h3>
+      <p>
+        Aşağıda, deneyimizin bir örneğini gerçekleştiren ana başlatma işlevini
+        tanımlıyoruz. İlk olarak, sistemdeki tüm değişkenleri sıfırlıyoruz ve
+        proton konteynerin herhangi bir duvarıyla çarpışmazken, her küçük zaman
+        adımını (<strong>dt</strong>>) bekledikten sonra protonu hareket
+        ettiriyoruz. Algoritmanın verimliliğini artırmak için zaman adımı
+        yerleştirmemiz önemli.
+      </p>
+      <pre>
+          <code class="language-python">
+def launch():
+  proton.reset_proton()
+  while proton.check_collision():
+    rate(1/dt) # basit bir gecikme işlevi
+    proton.move()
+          </code>      
+  </pre>
+      <p>
+        Bundan sonra, deneyi başlatmak için bir başlatma düğmesi oluşturuyoruz.
+        Düğmenin kodu aşağıdaki gibidir:
+      </p>
+      <pre><code class="language-python">
+button(text="Launch!", bind=launch) #butonu ve işlevi bağlıyoruz
+  </code></pre>
+      <h3>Sliders kullanarak parametreleri ayarlama</h3>
+      <p>
+        Herhangi bir deneyde, eğilimleri gözlemlemek için parametrelerimizi
+        değiştirebilmek isteriz. Sliders, bu işlevi gerçekleştirmede son derece
+        kullanışlıdır. Örneğin, manyetik alan kuvvetini (<strong>B</strong>)
+        ayarlamak için kod aşağıdaki gibi kullanılabilir.
+      </p>
+      <pre><code class="language-python">
+scene.append_to_caption("\n\n") #düzenli bir yapı için satırlar...
+def adjustBfield():
+    global Bfield #Global değer güncellemek için
+    Bfield = BfieldSlider.value
+    B = (0,-Bfield,0) #B aşağıya doğru
+    BfieldSliderReadout.text = BfieldSlider.value + " Tesla"BfieldSlider = slider(min=0, max=10, step=.5, value=5,
+bind=adjustBfield)
+scene.append_to_caption(" B-field Strength = ")
+BfieldSliderReadout = wtext(text="5 Tesla")
+        </code></pre>
+      <p>
+        İşlev, Slider'dan girişi alır ve koddaki manyetik alan gücü değerlerini
+        günceller. Slider ayarlandığında,
+        <strong>adjustBfield</strong> işlevi çağrılacak ve koddaki tüm değerler
+        güncellenecektir. <strong>B</strong>'nin değerinin görüntüsü de ekranda
+        güncellenecektir. Slider'ı oluştururken, slider'ın aralıklarını da
+        belirtebilirsiniz. Bu parametrelerden herhangi birini değiştirmek
+        isterseniz,
+        <a
+          href="https://www.glowscript.org/docs/VPythonDocs/slider.html"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >slider belgelerine</a
+        >
+        başvurabilirsiniz.
+      </p>
+      <p>
+        Yük miktarı (<strong>Q</strong>) ve fırlatma açısı (<strong>θ</strong>)
+        için benzer sliderlar kullanılabilir ve ilgili kod aşağıda verilmiştir.
+      </p>
+      <pre><code class="language-python">
+#Q yükünü ayarla
+scene.append_to_caption("\n\n")
+def adjustQ():
+    global Q
+    Q = QSlider.value
+    QSliderReadout.text = QSlider.value + " Coulumbs"QSlider = slider(min=0, max=1, step=.1, value=.5,
+bind=adjustQ)
+scene.append_to_caption(" Q = ")
+QSliderReadout = wtext(text="0.5 Coulumbs") # Thera açısını ayarla
+scene.append_to_caption("\n\n")
+def adjustAngle():
+    global theta
+    theta = angleSlider.value * pi / 180 # Derece-Radyan dönüşümü
+    angleSliderReadout.text = angleSlider.value + " degrees"
+    proton.v = vector(v_mag*cos(theta), v_mag*sin(theta), 0)
+
+
+angleSlider = slider(min=0, max=90, step=1, value=45,
+bind=adjustAngle)
+scene.append_to_caption(" Angle = ")
+angleSliderReadout = wtext(text="45 degrees")
+        </code></pre>
+      <p>Elde edeceğiniz slider'lar aşağıdaki gibi görünecektir:</p>
+      <img
+        src="vpython-canvas-gorunum.png"
+        alt="VPython animasyon launch canvas görünümü"
+      />
+      <h3>Simülasyonu çalıştırma</h3>
+      <p>
+        Artık protonu fırlatmaya hazırsınız! "<strong>Run this program</strong>"
+        a tıklayın ve ardından oluşturduğunuz başlat düğmesine tıklayın. Daha
+        önce öğrendiğimiz gibi, protonun sarmal bir yolda ilerlediğini fark
+        edeceksiniz.
+      </p>
+      <img src="proton-yolu.png" alt="Protonun izleyeceği yolun simülasyonu" />
+      <p>
+        Sliderları kullanarak farklı değerleri deneyebilir, farklı yarıçap ve
+        aralıklarda sarmallar oluşturabilirsiniz. Simülasyonu denemek için
+        <a
+          href="https://glowscript.org/#/user/fatihkkarakurt128/folder/MyPrograms/program/VPythonSarmalProton"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >bu örneği</a
+        >
+        kullanabilirsiniz.
+      </p>
+      <p>
+        VPython'un 3 boyutlu arayüzü, her türlü harika deney ve animasyonu
+        yapmamızı sağlar. Fizik simülasyonlarında yaygın olarak kullanılır.
+        VPython'un birçok heyecan verici uygulaması var ve yaptığımız örnek
+        çalışma bunlardan sadece biri.
+      </p>
+    </article>
+    <footer>
+      <p>2024 &copy; <a href="/">Hackod</a></p>
+    </footer>
+  </body>
+</html>
