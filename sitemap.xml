@@ -9,6 +9,10 @@
         <priority>0.80</priority>
     </url>
     <url>
+        <loc>https://hackod.com/blog/python-ile-sinir-agi-olusturma/</loc>
+        <priority>0.64</priority>
+    </url>
+    <url>
         <loc>https://hackod.com/blog/vim-nasil-kullanilir/</loc>
         <priority>0.64</priority>
     </url>

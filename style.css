@@ -3,10 +3,10 @@ body {
   font-family: monospace;
   margin: 0 auto;
   color: #a6a6a6;
-  padding: 0 20px; /* Her ekran genişliğinde biraz boşluk bırak */
-  max-width: 800px; /* Maksimum genişlik 800px, ama ekran daha küçükse uyum sağla */
+  padding: 0 20px;
+  max-width: 800px;
   font-size: 14px;
-  box-sizing: border-box; /* padding genişliği toplam genişliğe dahil et */
+  box-sizing: border-box;
   line-height: 1.5;
 }
 
@@ -39,10 +39,9 @@ footer p a {
   color: #4fc144;
 }
 
-/* Paragraflar için Stil */
 p {
-  text-align: justify; /* Metni her iki yana yasla */
-  text-justify: inter-word; /* Kelime aralıklarını ayarla */
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 a {
@@ -52,6 +51,30 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background-color: #2a2f2f;
+  color: #a6a6a6;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #4fc144;
+  text-align: left;
+}
+
+th {
+  background-color: #3b4141;
+  color: #ffffff;
+}
+
+tr:nth-child(even) {
+  background-color: #323838;
 }
 
 blockquote {
@@ -66,12 +89,11 @@ blockquote p {
   display: inline;
 }
 
-/* Navigasyon Bağlantıları Stili */
 .navigation {
   border: 2px dotted #a6a6a6;
-  list-style: none; /* Liste işaretlerini kaldır */
-  padding: 10px; /* Varsayılan padding'i sıfırla */
-  text-align: center; /* Metni ortala */
+  list-style: none;
+  padding: 10px;
+  text-align: center;
   margin-bottom: 8%;
 }
 
@@ -83,29 +105,29 @@ img {
 }
 
 .navigation li {
-  display: inline; /* List item'ları yan yana getir */
-  margin-right: 20px; /* Sağ boşluk ekle */
+  display: inline;
+  margin-right: 20px;
 }
 
 .navigation li a {
   color: #a6a6a6;
-  text-decoration: none; /* Alt çizgiyi kaldır */
-  font-weight: bold; /* Yazı tipini kalın yap */
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .navigation li a:hover {
-  text-decoration: underline; /* Üzerine gelindiğinde altını çiz */
+  text-decoration: underline;
 }
 
 .ascii-header a {
-  display: inline-block; /* Allows for text-align to work on inline elements */
-  text-decoration: none; /* Removes underline from the link */
-  color: #4fc144; /* Sets the color */
+  display: inline-block;
+  text-decoration: none;
+  color: #4fc144;
 }
 
 .ascii-header {
-  text-align: center; /* Centers the ASCII art */
-  width: 100%; /* Ensures the section spans the full width */
+  text-align: center;
+  width: 100%;
   font-size: small;
 }
 
@@ -128,11 +150,10 @@ img {
   text-align: center;
 }
 
-/* Duyarlı tasarım için media queries */
 @media screen and (max-width: 768px) {
   body {
-    font-size: 14px; /* Küçük ekranlarda font boyutunu koru */
-    padding: 0 20px; /* Daha küçük ekranlarda biraz daha az boşluk bırak */
+    font-size: 14px;
+    padding: 0 20px;
   }
 
   .ascii-header {
@@ -142,8 +163,8 @@ img {
 
 @media screen and (max-width: 576px) {
   body {
-    font-size: 12px; /* Çok küçük ekranlarda font boyutunu küçült */
-    padding: 0 12px; /* Çok küçük ekranlarda daha az boşluk bırak */
+    font-size: 12px;
+    padding: 0 12px;
   }
 
   .ascii-header {

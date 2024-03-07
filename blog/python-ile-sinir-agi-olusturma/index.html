@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Yapay zeka dünyasına yeni başlıyorsanız, Python dili bunun için harikadır. Python ile sinir ağı oluşturma adımlarını birlikte inceleyelim. Sıfırdan bir sinir ağının nasıl kurulacağını öğreneceksiniz."
+    />
+
+    <!-- Social Media Meta Tags -->
+    <meta
+      property="og:title"
+      content="Hackod - Python ile Sinir Ağı Nasıl Oluşturulur?"
+    />
+    <meta property="og:site_name" content="Hackod" />
+    <meta
+      property="og:url"
+      content="https://hackod.com/blog/python-ile-sinir-agi-olusturma"
+    />
+    <meta
+      property="og:description"
+      content="Yapay zeka dünyasına yeni başlıyorsanız, Python dili bunun için harikadır. Python ile sinir ağı oluşturma adımlarını birlikte inceleyelim. Sıfırdan bir sinir ağının nasıl kurulacağını öğreneceksiniz."
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:image"
+      content="https://hackod.com/blog/python-ile-sinir-agi-olusturma/python-ile-sinir-agi-olusturma.jpg"
+    />
+
+    <!-- Twitter Card Data -->
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Hackod - Python ile Sinir Ağı Nasıl Oluşturulur?"
+    />
+    <meta name="twitter:site" content="@hackodsocial" />
+    <meta
+      name="twitter:description"
+      content="Yapay zeka dünyasına yeni başlıyorsanız, Python dili bunun için harikadır. Python ile sinir ağı oluşturma adımlarını birlikte inceleyelim. Sıfırdan bir sinir ağının nasıl kurulacağını öğreneceksiniz."
+    />
+    <meta
+      name="twitter:image"
+      content="https://hackod.com/blog/python-ile-sinir-agi-olusturma/python-ile-sinir-agi-olusturma.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Python ile Sinir Ağı Nasıl Oluşturulur?"
+    />
+
+    <title>Hackod - Python ile Sinir Ağı Nasıl Oluşturulur?</title>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://hackod.com/blog/python-ile-sinir-agi-olusturma/"
+        },
+        "headline": "Python ile Sinir Ağı Nasıl Oluşturulur?",
+        "image": "https://hackod.com/blog/python-ile-sinir-agi-olusturma/python-ile-sinir-agi-olusturma.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "Fatih Küçükkarakurt",
+          "url": "https://linkedin.com/in/fkkarakurt"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Hackod",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://hackod.com/favicon/mstile-150x150.png"
+          }
+        },
+        "datePublished": ""
+      }
+    </script>
+
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="../../code.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <script>
+      hljs.highlightAll();
+    </script>
+  </head>
+  <body>
+    <header>
+      <section class="ascii-header">
+        <h1 style="display: none">
+          Hackod | Yazılım Geliştirme ve Programlama | Blog
+        </h1>
+        <a href="/" style="text-decoration: none">
+          <pre class="logo-pre">
+  __    __                      __                        __ 
+  /  |  /  |                    /  |                      /  |
+  $$ |  $$ |  ______    _______ $$ |   __   ______    ____$$ |
+  $$ |__$$ | /      \  /       |$$ |  /  | /      \  /    $$ |
+  $$    $$ | $$$$$$  |/$$$$$$$/ $$ |_/$$/ /$$$$$$  |/$$$$$$$ |
+  $$$$$$$$ | /    $$ |$$ |      $$   $$<  $$ |  $$ |$$ |  $$ |
+  $$ |  $$ |/$$$$$$$ |$$ \_____ $$$$$$  \ $$ \__$$ |$$ \__$$ |
+  $$ |  $$ |$$    $$ |$$       |$$ | $$  |$$    $$/ $$    $$ |
+  $$/   $$/  $$$$$$$/  $$$$$$$/ $$/   $$/  $$$$$$/   $$$$$$$/ 
+  
+                                                                          
+               </pre
+          >
+        </a>
+      </section>
+
+      <nav>
+        <ul class="navigation">
+          <li>
+            <a href="/blog">Blog</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <article>
+      <p>
+        Eğer yapay zeka (AI) dünyasına adım atmaya yeni karar verdiyseniz,
+        Python dili bu yolculuk için mükemmel bir başlangıç noktasıdır. Python,
+        yapay zeka alanında kullanılan çoğu aracın temelini oluşturur.
+        <strong>Derin öğrenme</strong>, verileri kullanarak tahminler yapma
+        süreci için kullanılan önemli bir tekniktir ve esas olarak
+        <a
+          href="https://en.wikipedia.org/wiki/Neural_network"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+        >
+          sinir ağları</a
+        >na dayanır. Bu makalede, bir sinir ağının sıfırdan nasıl
+        oluşturulacağına dair bir rehber sunmayı amaçlamaktayım.
+      </p>
+
+      <p>
+        Bir üretim ortamında, genellikle
+        <a
+          href="https://www.tensorflow.org/"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >TensorFlow</a
+        >
+        veya
+        <a
+          href="https://pytorch.org/"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >PyTorch</a
+        >
+        gibi gelişmiş derin öğrenme çerçevelerinden birini tercih edersiniz.
+        Ancak, sinir ağlarının temel çalışma prensiplerini anlamak, derin
+        öğrenme modellerinizi daha etkili bir şekilde tasarlamanıza olanak
+        tanır.
+      </p>
+
+      <p><strong>Bu makalede şu soruların cevaplarını arayacağız:</strong></p>
+
+      <ul>
+        <li>Yapay Zeka nedir?</li>
+        <li>Makine Öğrenmesi ve Derin Öğrenme nedir?</li>
+        <li>Bir sinir ağı nasıl çalışır?</li>
+        <li>Python ile sinir ağı nasıl yapılır?</li>
+      </ul>
+
+      <h2>Yapay Zekaya Genel Bakış</h2>
+
+      <p>
+        AI kullanmanın temel amacı, bilgisayarların insanlar gibi
+        düşünebilmesini sağlamaktır. 1950'lerden bu yana tartışılan bu konu,
+        teknolojinin ilerlemesiyle daha da önem kazanmıştır.
+      </p>
+
+      <p>
+        Bir
+        <a
+          href="https://realpython.com/python-practice-problems/#python-practice-problem-5-sudoku-solver"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >Sudoku</a
+        >
+        problemini çözmek üzere AI kullanarak bir Python programı geliştirmeniz
+        gerektiğini hayal edin. Bu, koşullu ifadeler yazarak ve her konuma bir
+        sayı yerleştirip yerleştirilemeyeceğini kontrol ederek başarılabilir. Bu
+        süreç, bir AI uygulaması olarak kabul edilebilir; zira bilgisayarınızı
+        bir problemi çözmek üzere programlamış olursunuz.
+      </p>
+
+      <p>
+        <strong>Makine Öğrenimi</strong> ve <strong>Derin Öğrenme</strong>,
+        sorun çözme yaklaşımlarıdır ve her ikisi de eğitim verilerini kullanır.
+        Bu teknikler, AI ile sorun çözme sürecinde kullanılabilir. Bu iki
+        tekniğin farklarını sonraki bölümlerde daha detaylı inceleyeceğiz.
+      </p>
+
+      <h3>Makine Öğrenimi</h3>
+
+      <p>
+        Makine öğrenimi, bir sistemi belirli bir sorunu çözecek şekilde eğitme
+        teknolojisidir. Sudoku örneğine dönüş yaptığımızda, makine öğrenimi
+        kullanarak bu problemin çözümü için, çözülmüş sudoku oyunlarının
+        verilerini toplayıp bir
+        <strong>istatistiksel model</strong> eğitirsiniz. İstatistiksel
+        modeller, bir fenomenin matematiksel olarak formüle edilmiş
+        yaklaşımlarıdır.
+      </p>
+
+      <p>
+        Denetimli öğrenme, girdiler ve bilinen çıktılar olan bir veri kümesi ile
+        model eğitimi yapmanızı gerektiren bir makine öğrenimi görevidir. Görev,
+        bu veri setini kullanarak girdilere dayalı olarak doğru çıktıları tahmin
+        eden bir model oluşturmaktır.
+      </p>
+
+      <p>
+        Eğitim verileri ve makine öğrenimi algoritmasının birleşimi bir model
+        oluşturur. Bu modeli kullanarak yeni veriler için tahminler
+        yapabilirsiniz. Denetimli öğrenme, yeni, görülmemiş veriler için
+        tahminler yapmayı amaçlar. Bu, eğitim veri kümesinin dağılımına benzer
+        bir olasılık dağılımını izlediği varsayımı üzerine kuruludur. Gelecekte
+        bu dağılım değişirse, modelinizi yeni eğitim verileriyle yeniden
+        eğitmeniz gerekebilir.
+      </p>
+
+      <img
+        alt="Bir makine öğrenimi modelini eğitmek için iş akışı"
+        src="python-makine-ogrenimi-model-egitimi-diyagrami.jpg"
+        style="width: 75%"
+      />
+
+      <blockquote>
+        <p>
+          <a
+            href="https://scikit-learn.org/"
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            >scikit-learn</a
+          >, denetimli ve denetimsiz öğrenme algoritmaları sunan popüler bir
+          Python makine öğrenimi kitaplığıdır.
+        </p>
+      </blockquote>
+
+      <p>
+        Denetimli öğrenme, yeni, görünmeyen veriler için doğru tahminler yapmayı
+        amaçlar. Bu, görünmeyen verilerin eğitim veri kümesinin dağılımına
+        benzer bir olasılık dağılımını izlediği varsayımı üzerine kuruludur.
+        Eğer bu dağılım gelecekte değişirse, modelinizi yeni eğitim verileriyle
+        yeniden eğitmeniz gerekir.
+      </p>
+
+      <h3>Özellik Mühendisliği</h3>
+
+      <p>
+        Farklı türde verileri girdi olarak kullandığınızda, tahmin sorunları
+        daha karmaşık hale gelir. Sudoku problemi doğrudan sayılarla
+        ilgilendiğiniz için nispeten basittir. Ancak, bir cümledeki duyguyu veya
+        bir resmin bir kediyi tasvir edip etmediğini tahmin etmek isterseniz, bu
+        durumda işler daha zorlaşır.
+      </p>
+
+      <p>
+        Giriş verilerine özellik denir ve özellik mühendisliği, ham verilerden
+        özelliklerin çıkarılması sürecidir. Farklı veri türleriyle uğraşırken,
+        bu verileri temsil etmenin ve onlardan anlamlı bilgiler çıkarmak için
+        yollar bulmanız gerekir.
+      </p>
+
+      <p>
+        Özellik mühendisliği tekniğine bir örnek,
+        <a
+          href="https://en.wikipedia.org/wiki/Lemmatisation"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >lemmatizasyon</a
+        >
+        olabilir. Lemmatizasyon, bir kelimenin bükülmüş formlarını tek bir öğe
+        olarak analiz edebilmek için bir araya getirme işlemidir.
+      </p>
+
+      <p>
+        Eğer her bir kelime için diziler kullanıyorsanız, lemmatizasyon
+        uygulayarak daha az seyrek bir matris elde edebilir ve bazı makine
+        öğrenimi algoritmalarının performansını artırabilirsiniz.
+      </p>
+
+      <img
+        alt="Kelime torbası modeli kullanarak özellikler oluşturma"
+        src="kelime-torbasi-modeli-ile-python.jpg"
+        style="width: 100%"
+      />
+
+      <p>
+        İlk adımda, her kelimenin çekimli biçimi lemmasına indirgenir. Ardından,
+        kelimenin cümlede kaç defa kullanıldığı hesaplanır. Sonuç, metindeki her
+        kelimenin geçtiği sayıları içeren bir dizi olur.
+      </p>
+
+      <h3>Derin Öğrenme</h3>
+
+      <p>
+        Derin öğrenme, sinir ağının hangi özelliklerin önemli olduğunu
+        kendisinin bulmasına izin verdiğiniz bir tekniktir. Bu, özellik
+        mühendisliği sürecini atlayabileceğiniz anlamına gelir.
+      </p>
+
+      <p>
+        Özellik mühendisliğiyle uğraşmak gerekmez çünkü veri kümeleri
+        karmaşıklaştıkça süreç zorlaşır. Örneğin, bir kişinin yüz ifadesinden
+        ruh halini tahmin etmek istediğinizde, sinir ağları özellikleri
+        kendileri öğrenebilirler. Sonraki bölümlerde sinir ağlarının nasıl
+        çalıştıklarını daha iyi anlamak için derinlemesine inceleyeceğiz.
+      </p>
+
+      <h2>Sinir Ağları: Temel Kavramlar</h2>
+
+      <p>
+        Sinir ağı, aşağıdaki adımları izleyerek tahmin yapmayı öğrenen bir
+        sistemdir:
+      </p>
+
+      <ol>
+        <li>Giriş verilerinin alınması</li>
+        <li>Tahmin yapmak</li>
+        <li>Tahmini istenen çıktıyla karşılaştırmak</li>
+        <li>
+          Bir dahaki sefere daha doğru tahmin etmek için iç durumu ayarlamak
+        </li>
+      </ol>
+
+      <p>
+        <strong>Vektörler</strong>, <strong>katmanlar</strong> ve
+        <strong
+          ><a href="/blog/dogrusal-regresyona-giris/"
+            >doğrusal regresyon</a
+          ></strong
+        >, sinir ağlarının yapı taşlarından bazılarıdır. Veriler vektörler
+        olarak saklanır ve Python kullanılarak bu vektörler
+        <a
+          href="https://mehmet-akif-akkus.gitbook.io/numpy-ile-veri-bilimi/chapter1"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >dizilerde saklanır</a
+        >. Her katman, önceki katmandan gelen verileri dönüştürür. Her katmanı
+        bir özellik mühendisliği adımı olarak düşünebilirsiniz. Çünkü her katman
+        daha önce gelen verilerin bazı temsillerini çıkarır.
+      </p>
+
+      <p>
+        Anlamlı bilgileri çıkarma ve derin öğrenme modelini eğitme süreci her
+        iki senaryo için de aynıdır, ister resim ister metin verisi kullanın.
+      </p>
+
+      <img
+        alt="İki katmanlı bir sinir ağı"
+        src="iki-katmanli-sinir-agi.jpg"
+        style="width: 75%"
+      />
+
+      <p>
+        Her katman, önceki katmandan gelen verileri bazı matematiksel işlemlerle
+        dönüştürür.
+      </p>
+
+      <h3>Sinir Ağını Eğitme Süreci</h3>
+
+      <p>
+        Bir sinir ağını eğitmek, deneme yanılma sürecine benzer. İlk
+        deneyimlerinizde, tahmin yapma ve bu tahminleri istenen çıktılarla
+        karşılaştırma sürecinden geçersiniz. Her denemede, daha doğru tahminler
+        yapmak için ayarlamalar yaparsınız.
+      </p>
+
+      <p>
+        Bir dart tahtasının ortasına vurmaya çalışmanın adımları aşağıda
+        gösterilmektedir:
+      </p>
+
+      <img
+        alt="Bir dart tahtasının ortasına vurma adımları"
+        src="python-sinir-agi-dart-oyunu.jpg"
+        style="width: 75%"
+      />
+
+      <p>
+        Dartın nereye indiğini gözlemleyerek hataları değerlendirmeye devam
+        ettiğinize dikkat edin. Süreç, dartı tahtanın ortasına yerleştirene
+        kadar devam eder.
+      </p>
+
+      <p>
+        Sinir ağlarında, süreç rastgele ağırlık ve bias vektörleri ile başlar.
+        Bir tahmin yapılır, bu tahmin istenen çıktıyla karşılaştırılır ve daha
+        doğru tahminler yapabilmek için vektörler ayarlanır. Bu süreç,
+        tahminlerle doğru hedefler arasındaki fark en aza indirgene kadar devam
+        eder.
+      </p>
+
+      <p>
+        Eğitimin ne zaman durdurulacağını ve hangi doğruluk hedefine
+        ulaşılacağını belirlemek, sinir ağlarını eğitmenin önemli bir yönüdür.
+      </p>
+
+      <h3>Vektörler ve Ağırlıklar</h3>
+
+      <p>
+        Sinir ağları ile çalışmak, vektörlerle işlem yapmayı gerektirir.
+        Vektörler, çok boyutlu diziler olarak temsil edilir ve derin öğrenmede
+        oldukça kullanışlıdırlar. İki vektörün iç çarpımı, yön açısından
+        benzerliklerini ve büyüklüklerine göre ölçeklendirilmiş benzerliklerini
+        gösterir.
+      </p>
+
+      <p>
+        Sinir ağlarında önemli vektörler, <strong>ağırlıklar</strong> (weights)
+        ve <strong>yanılma</strong> (bias) vektörleridir. Esasen, sinir ağınızın
+        belirli bir girişin, daha önce gördüğü diğer girişlere ne kadar
+        benzediğini kontrol etmesi beklenir. Eğer yeni giriş, daha önce
+        gördüklerine benzerse, çıktılar da benzer olacaktır.
+      </p>
+
+      <h3>Doğrusal Regresyon Modeli Nedir?</h3>
+
+      <p>
+        Doğrusal regresyon, bağımlı bir değişken ile bir veya daha fazla
+        bağımsız değişken arasındaki ilişkiyi modellemek için kullanılır. Bu
+        yöntem, değişkenler arasındaki ilişkiyi doğrusal olarak tahmin ettiğiniz
+        bir tekniktir ve 19. yüzyıla dayanır.
+      </p>
+
+      <p>
+        Doğrusal regresyon modeli, bağımsız değişkenlerin ağırlıklı toplamını
+        kullanarak bağımlı değişkeni modelleyebilir. Bu durumda, her bağımsız
+        değişken, <strong>ağırlık</strong> adı verilen bir katsayı ile çarpılır.
+        Ağırlıklar ve bağımsız değişkenlerin yanı sıra, bir de yanılma vektörü
+        eklenir.
+      </p>
+
+      <p>
+        Örneğin, bir evin bölgesine ve yaşına bağlı olarak fiyatını tahmin etmek
+        istediğinizi düşünün. Bu ilişkiyi modellemek için doğrusal regresyon
+        kullanabilirsiniz:
+      </p>
+
+      <pre><code>price = (weights_area * area) + (weights_age * age) + bias</code></pre>
+
+      <p>
+        Bu örnekte iki ağırlık vardır: <strong>weights_area</strong> ve
+        <strong>weights_age</strong>. Eğitim süreci, modelin doğru fiyat
+        değerlerini tahmin edebilmesi için bu ağırlıkların ve yanılmanın
+        ayarlanmasından oluşur.
+      </p>
+
+      <h2>Python ile İlk Sinir Ağınızı Oluşturmaya Başlayın</h2>
+
+      <p>
+        Bir sinir ağını inşa etmenin ilk adımı, giriş verilerinden bir çıktı
+        üretmektir. Bunu yapmak için, Python ve
+        <a
+          href="https://numpy.org/doc/stable/"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >NumPy</a
+        >
+        kullanarak girişlerinizi temsil etmek iyi bir ilk adımdır.
+      </p>
+
+      <h3>Sinir Ağının Girdilerini NumPy ile Kullanmak</h3>
+
+      <p>
+        NumPy kullanarak ağın giriş vektörlerini diziler olarak temsil
+        edeceksiniz. Ancak, NumPy kullanmadan önce, saf Python'da vektörlerle
+        çalışarak neler olduğunu daha iyi anlamak yararlı olacaktır.
+      </p>
+
+      <p>
+        Bu ilk örnekte, bir giriş vektörünüz ve iki ağırlık vektörünüz vardır.
+        Amaç, hangi ağırlıkların girdiye daha benzer olduğunu yön ve büyüklük
+        açısından belirlemektir. Bu,
+        <a
+          href="https://tr.wikipedia.org/wiki/Nokta_%C3%A7arp%C4%B1m"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >nokta çarpımı</a
+        >
+        uygulayarak yapılır.
+      </p>
+
+      <p>
+        <img
+          alt="Kartezyen koordinat düzleminde üç vektör"
+          src="kartezyen-koordinat-duzleminde-vektorler.jpg"
+          style="width: 75%"
+        />
+      </p>
+
+      <p>
+        İlk olarak, giriş vektörü ve iki ağırlık vektörü tanımlarsınız. Sonra,
+        <strong>input_vector</strong> ve <strong>weights_1</strong> arasındaki
+        benzerliği hesaplarsınız. Bunu, iki dizinin nokta çarpımını uygulayarak
+        gerçekleştirirsiniz:
+      </p>
+
+      <pre><code>In [1]: input_vector = [1.72, 1.23]
+In [2]: weights_1 = [1.26, 0]
+In [3]: weights_2 = [2.17, 0.32]
+
+In [4]: # input_vector ve weights_1 arasındaki nokta çarpımının hesaplanması
+In [5]: first_indexes_mult = input_vector[0] * weights_1[0]
+In [6]: second_indexes_mult = input_vector[1] * weights_1[1]
+In [7]: dot_product_1 = first_indexes_mult + second_indexes_mult
+
+In [8]: print(f"The dot product is: {dot_product_1}")
+Out[8]: The dot product is: 2.1672</code></pre>
+
+      <p>
+        Nokta çarpımı 2.1672 olarak hesaplandı. NumPy
+        <strong>np.dot()</strong> fonksiyonunu kullanarak aynı işlemi daha kolay
+        bir şekilde yapabilirsiniz:
+      </p>
+
+      <pre><code>In [9]: import numpy as np
+
+In [10]: dot_product_1 = np.dot(input_vector, weights_1)
+
+In [11]: print(f"The dot product is: {dot_product_1}")
+Out[11]: The dot product is: 2.1672</code></pre>
+
+      <p>
+        Şimdi, <strong>input_vector</strong> ve
+        <strong>weights_2</strong> arasındaki nokta çarpımını hesaplayalım:
+      </p>
+
+      <pre><code>In [10]: dot_product_2 = np.dot(input_vector, weights_2)
+
+In [11]: print(f"The dot product is: {dot_product_2}")
+Out[11]: The dot product is: 4.1259</code></pre>
+
+      <p>
+        Bu sefer sonuç 4.1259'dur. Dot product'ı, vektör koordinatları
+        arasındaki benzerlik ölçümü olarak düşünebilirsiniz, burada çarpım
+        sonucu 0 ise, koordinatlar benzer değildir; ancak 0'dan farklı bir
+        değerse, koordinatlar benzerdir.
+      </p>
+
+      <p>
+        Bu prensip, dot product'ı vektörler arasındaki basit bir benzerlik
+        ölçümü olarak değerlendirmenize olanak tanır. Örneğe geri döndüğümüzde,
+        <strong>input_vector</strong> ve <strong>weights_2</strong> arasındaki
+        iç çarpımın 4.1259 olduğunu ve bu değerin 2.1672'den büyük olduğunu
+        görebiliriz, bu da <strong>input_vector</strong>'ün
+        <strong>weights_2</strong>'ye daha benzer olduğu anlamına gelir. Aynı
+        mantığı sinir ağınızda da uygulayacaksınız.
+      </p>
+
+      <p>
+        Bu makalede, yalnızca iki olası sonucu olan tahminler yapacak bir model
+        eğitmeye çalışacağız. Çıktı sonucu 0 veya 1 olabilir. Bu, girdiler ve
+        bilinen hedeflerle bir veri kümesine sahip olduğunuz denetimli öğrenme
+        problemlerinin bir alt kümesi olan bir sınıflandırma problemidir.
+      </p>
+
+      <table>
+        <tr>
+          <th>Girdi Vektörü</th>
+          <th>Hedef</th>
+        </tr>
+        <tr>
+          <td>[1.66, 1.56]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>[2, 1.5]</td>
+          <td>0</td>
+        </tr>
+      </table>
+
+      <p>
+        Gerçek üretim senaryolarında veriler genellikle resimler veya metin gibi
+        dosyalar halinde sunulur, bu basit sayısal veri setleri yaygın değildir.
+      </p>
+
+      <h3>İlk Tahmininiz</h3>
+
+      <p>
+        İlk sinir ağınız olduğundan, işleri basit tutacak ve yalnızca iki
+        katmanlı bir ağ oluşturacaksınız. Şimdiye kadar gördüğünüz üzere, sinir
+        ağında kullanılan iki işlem dot product ve toplam işlemidir ve her ikisi
+        de doğrusal işlemlerdir.
+      </p>
+
+      <p>
+        Yalnızca doğrusal işlemler kullanarak daha fazla katman eklerseniz, her
+        katman önceki katmanın girdisiyle her zaman belirli bir korelasyona
+        sahip olacağından, birden çok katmana sahip bir ağ, her zaman aynı
+        sonuçları öngören daha az katmana sahip bir ağ gibi olacaktır.
+      </p>
+
+      <p>
+        Amacınız, orta katmanların bazen bir girdi ile ilişkilendirilmesini ve
+        bazen de ilişkilendirilmemesini sağlayacak bir işlem bulmaktır. Doğrusal
+        olmayan fonksiyonları kullanarak bu davranışı elde edebilirsiniz. Bu
+        fonksiyonlara <strong>aktivasyon fonksiyonları</strong> denir.
+      </p>
+
+      <p>
+        Oluşturduğunuz ağ,
+        <a
+          href="https://tr.wikipedia.org/wiki/Sigmoid_i%C5%9Flevi"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >sigmoid aktivasyon fonksiyonunu</a
+        >
+        kullanacaktır. Veri kümesindeki olası iki çıktı 0 ve 1'dir ve sigmoid
+        işlevi, çıktıyı 0 ile 1 arasındaki bir aralıkta sınırlar.
+      </p>
+
+      <img
+        alt="Sinir ağınızdaki hesaplamaların akışı"
+        src="sinir-agi-hesaplama-akisi.jpg"
+      />
+
+      <p>Şimdi, tüm bu bilgileri koda dönüştürme zamanı:</p>
+
+      <pre><code>In [12]: # Vektörleri NumPy dizilerinde sarma
+In [13]: input_vector = np.array([1.66, 1.56])
+In [14]: weights_1 = np.array([1.45, -0.66])
+In [15]: bias = np.array([0.0])
+
+In [16]: def sigmoid(x):
+   ...:     return 1 / (1 + np.exp(-x))
+
+In [17]: def make_prediction(input_vector, weights, bias):
+   ...:      layer_1 = np.dot(input_vector, weights) + bias
+   ...:      layer_2 = sigmoid(layer_1)
+   ...:      return layer_2
+
+In [18]: prediction = make_prediction(input_vector, weights_1, bias)
+
+In [19]: print(f"The prediction result is: {prediction}")
+Out[19]: The prediction result is: [0.7985731]</code></pre>
+
+      <p>
+        Ham tahmin sonucu 0,79'dur ve 0,5'ten büyüktür, dolayısıyla çıktı 1'dir.
+        Şimdi başka bir giriş vektörü deneyin:
+      </p>
+
+      <pre><code>In [20]: # input_vector değerini değiştirme
+In [21]: input_vector = np.array([2, 1.5])
+
+In [22]: prediction = make_prediction(input_vector, weights_1, bias)
+
+In [23]: print(f"The prediction result is: {prediction}")
+Out[23]: The prediction result is: [0.87101915]</code></pre>
+
+      <p>
+        Bu sefer, tahmin yanlıştır çünkü bu girdi için hedef 0 olmalıdır, fakat
+        ham sonuç 0,87'dir. Yanlış bir tahmin yapıldı, ancak bu hatanın
+        büyüklüğü nedir? Bir sonraki adım, bu değerlendirmeyi nasıl yapacağınızı
+        bulmaktır.
+      </p>
+
+      <h2>İlk Sinir Ağınızı Eğitin</h2>
+
+      <p>
+        Sinir ağını eğitme sürecinde, öncelikle hatayı değerlendirmeli ve
+        ağırlıkları (weights) buna göre ayarlamalısınız. Bu ayarlamaları yapmak
+        için <strong>gradyan iniş</strong> ve
+        <strong>geri yayılım</strong> algoritmalarını kullanacaksınız. Gradyan
+        inişi, parametreleri güncellemek ve optimizasyon yönünü ve hızını bulmak
+        için uygulanır.
+      </p>
+
+      <p>
+        Ağda herhangi bir değişiklik yapmadan önce, hatayı nasıl
+        hesaplayacağınızı öğrenmelisiniz. Bu açından bir sonraki alt başlık
+        oldukça önemlidir.
+      </p>
+
+      <h3>Tahmin Hatasının Hesaplanması</h3>
+
+      <p>
+        Hatanın büyüklüğünü anlamak için, onu ölçebileceğiniz bir yöntem
+        seçmelisiniz. Bu amaçla kullanılan işleve
+        <strong>maliyet işlevi</strong> veya
+        <strong>kayıp işlevi</strong> denir. Bunun için ortalama karesel hata
+        (<a
+          href="https://en.wikipedia.org/wiki/Mean_squared_error"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >MSE</a
+        >) hakkında fikir sahibi olmakta fayda var. Bunu maliyet fonksiyonu
+        olarak kullanacağız.
+      </p>
+
+      <p>MSE'yi iki adımda hesaplayabilirsiniz:</p>
+      <ol>
+        <li>Tahmin ve hedef arasındaki farkı hesaplayın.</li>
+        <li>Sonucu kendisiyle çarpın.</li>
+      </ol>
+
+      <p>
+        MSE, tahminin doğru sonuçtan ne kadar sapma gösterdiğinin karesel bir
+        ölçüsüdür, bu nedenle her zaman pozitif bir değer elde edersiniz.
+      </p>
+
+      <pre><code>In [25]: mse = np.square(prediction - target)
+
+In [26]: print(f"Prediction: {prediction}; Error: {mse}")
+Out[26]: Prediction: [0.87101915]; Error: [0.7586743596667225]</code></pre>
+
+      <p>
+        Hatanın 0.75 olduğunu gördüğünüz örnekte, daha büyük hataların daha
+        büyük etkilere sahip olduğunu ve küçük hataların etkisinin azaldığını
+        unutmayın.
+      </p>
+
+      <h3>Hatayı Nasıl Azaltacağız?</h3>
+
+      <p>
+        Amacınız, hataları azaltabilmek için ağırlıkları (weights) ve yanılma
+        terimini (bias) değiştirmektir. Bu süreci anlamak için, başlangıçta
+        sadece ağırlıklara odaklanacağız. İlk olarak, doğrusal olmayan bir
+        fonksiyon kullanmadan yalnızca <strong>layer_1</strong> sonucunu ele
+        alacağız ve nasıl hataları azaltabileceğinizi bulacağız.
+      </p>
+
+      <p>
+        MSE, <strong>error = np.square(prediction - target)</strong> olarak
+        hesaplanır. Bu ifadeyi,
+        <strong>x = (prediction - target)</strong> olarak düşünürseniz, MSE'nin
+        <strong>x</strong>'in karesi olduğunu görebilirsiniz, bu da ikinci
+        dereceden bir fonksiyondur.
+      </p>
+
+      <img
+        alt="İkinci dereceden bir fonksiyonun grafiği"
+        src="ikinci-dereceden-fonksiyon-grafigi.jpg"
+        style="width: 75%"
+      />
+
+      <p>
+        Yukarıdaki grafik, hatanın y ekseninde nasıl değiştiğini gösterir. Eğer
+        A noktasındaysanız ve hatayı azaltmak istiyorsanız, x değerini
+        azaltmanız gerekir. B noktasındaysanız, x değerini artırmanız gerekir.
+        Türev, hangi yöne gitmeniz gerektiğini belirlemenize yardımcı olur.
+      </p>
+
+      <p>
+        Türev, modelin parametrelerinin nasıl değişeceğini açıklar. Gradyan
+        inişi, ağ parametrelerini uygun yönde güncellemek için kullanılan
+        yöntemin adıdır.
+      </p>
+
+      <p>
+        Unutmayın, <strong>error = np.square(x)</strong> olduğunda, türev
+        <strong>2*x</strong> olur. Bu, hatanın, tahmin ile hedef arasındaki
+        farka göre nasıl değiştiğini gösterir ve ağırlıkları nasıl güncellemeniz
+        gerektiği konusunda size yönlendirme sağlar.
+      </p>
+
+      <pre><code>In [27]: derivative = 2 * (prediction - target)
+
+In [28]: print(f"The derivative is {derivative}")
+Out[28]: The derivative is: [1.7420383]</code></pre>
+
+      <p>
+        Sonuç pozitif olduğundan, ağırlıkları azaltmanız gerekir. Ağırlıkları
+        uygun şekilde güncelleyerek ve ardından tahminin nasıl etkilendiğini
+        görmek için tahmin işlemi tekrar yaparak, ağınızın performansını
+        geliştirebilirsiniz.
+      </p>
+
+      <pre><code class="language-python">
+In [29]: # Updating the weights
+In [30]: weights_1 = weights_1 - derivative
+
+In [31]: prediction = make_prediction(input_vector, weights_1, bias)
+
+In [32]: error = (prediction - target) ** 2
+
+In [33]: print(f"Prediction: {prediction}; Error: {error}")
+Out[33]: Prediction: [0.01496248]; Error: [0.00022388]</code></pre>
+
+      <p>
+        Hata neredeyse sıfıra düştü, bu iyi bir gelişme. Türev sonucu bu örnekte
+        küçüktü, ancak bazı durumlarda türev sonuçları çok yüksek olabilir.
+        Yüksek türev sonuçları ideal değildir çünkü doğrudan hedeflenen sonuca
+        ulaşamazsınız, bu da sıfıra yaklaşmanızı engeller. Bu sorunu çözmek
+        için, türev sonucunun bir kısmıyla ağırlıkları güncellemek gerekir.
+      </p>
+
+      <p>
+        Ağırlıkları güncellerken ve bir oran belirlerken, genellikle öğrenme
+        hızı olarak adlandırılan alfa parametresi kullanılır. Öğrenme oranını
+        azaltırsanız, yapılan güncellemeler daha küçük olur; artırırsanız,
+        adımlar daha büyük olur. En uygun öğrenme oranının ne olduğunu bulmak
+        genellikle tahmin ve deneme yoluyla yapılır.
+      </p>
+
+      <blockquote>
+        <p>
+          Not: Yaygın kullanılan öğrenme oranı değerleri <strong>0.1</strong>,
+          <strong>0.01</strong> ve <strong>0.001</strong>'dir.
+        </p>
+      </blockquote>
+
+      <p>
+        Eğer yeni ağırlıklarla bir tahmin yaparsanız ve yanlış bir tahmin
+        yaptığınızı görürseniz, bu, sinir ağınızın eğitim veri setindeki her
+        örneği doğru bir şekilde tahmin edebiliyorsa, modelinizin verilerdeki
+        özellikleri öğrenmek yerine örnekleri ezberlemiş olabileceğini, yani
+        aşırı uyuma girdiğini gösterir.
+      </p>
+
+      <p>
+        <a
+          href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >Stokastik gradyan inişi</a
+        >
+        ve
+        <a
+          href="https://en.wikipedia.org/wiki/Regularization_(mathematics)"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >düzenleme</a
+        >
+        gibi teknikler, aşırı uyumu önlemek için kullanılabilir. Bu yazıda,
+        çevrimiçi stokastik gradyan iniş yöntemini kullanacaksınız.
+      </p>
+
+      <p>
+        Artık hata nasıl hesaplanır ve ağırlıklar buna göre nasıl ayarlanır
+        biliyorsunuz, sinir ağınızı geliştirmeye devam etme zamanı.
+      </p>
+
+      <h3>Zincir Kuralı</h3>
+
+      <p>
+        Sinir ağınızda hem ağırlıkları hem de bias vektörlerini güncellemeniz
+        gerekiyor. Kullanılan hata fonksiyonu, ağırlıklar ve bias olmak üzere
+        iki bağımsız değişkene bağlıdır. Bu bağımsız değişkenleri değiştirerek
+        ve ayarlayarak istenilen sonuca ulaşabilirsiniz.
+      </p>
+
+      <p>
+        Oluşturduğunuz ağ iki katmandan oluşuyor ve her katmanın kendi
+        fonksiyonları olduğu için, bir işlev bileşimi ile uğraşıyorsunuz. Bu,
+        hata fonksiyonunun hala np.square(x) olduğu, ancak x'in şimdi başka bir
+        fonksiyonun sonucu olduğu anlamına gelir.
+      </p>
+
+      <p>
+        Ağırlıkları ve bias'ı nasıl değiştireceğinizi öğrenmek istiyorsunuz.
+        Türevleri kullanarak bunu yapabileceğinizi gördünüz, ancak şimdi, sadece
+        toplama içeren bir fonksiyon yerine, sonucunu başka fonksiyonlar
+        kullanarak üreten bir fonksiyonla uğraşıyorsunuz.
+      </p>
+
+      <p>
+        Fonksiyon bileşimine sahip olduğunuz için, parametrelerle ilgili hatanın
+        türevini almak amacıyla, zincir kuralını kullanmanız gerekiyor. Zincir
+        kuralı ile her fonksiyonun kısmi türevlerini alır ve bunları
+        değerlendirerek istenen türevi elde etmek için tüm kısmi türevleri
+        çarparsınız.
+      </p>
+
+      <p>
+        Şimdi ağırlıkları güncelleyebilirsiniz. Hatayı azaltmak için ağırlıkları
+        nasıl değiştireceğinizi bilmek istiyorsunuz. Bu, hatanın ağırlıklara
+        göre türevini hesaplamanız gerektiği anlamına gelir. Hata, farklı
+        fonksiyonları birleştirerek hesaplandığı için, bu fonksiyonların kısmi
+        türevlerini almanız gerekmektedir.
+      </p>
+
+      <p>
+        Ağırlıklara göre hatanın türevini bulmak için zincir kuralını nasıl
+        uyguladığınızın görsel temsili aşağıdadır:
+      </p>
+
+      <img
+        alt="Sinir ağı içindeki kısmi türevleri gösteren bir şema"
+        src="kismi-turev-diyagrami.jpg"
+        style="width: 75%"
+      />
+
+      <p>
+        Kalın kırmızı ok, istenen türevi gösterir. Kırmızı altıgenden
+        başlayarak, bir tahmin yapmanın ve her fonksiyonda kısmi türevleri
+        hesaplamanın tersini izleyersiniz.
+      </p>
+
+      <p>
+        Yukarıdaki resimde, her bir fonksiyon sarı altıgenlerle ve kısmi
+        türevler sol taraftaki gri oklarla temsil edilir. Zincir kuralı
+        uygulandığında, <strong>derror_dweights</strong>'ın değeri aşağıdaki
+        gibidir:
+      </p>
+
+      <pre><code>derror_dweights = (
+    derror_dprediction * dprediction_dlayer1 * dlayer1_dweights
+)</code></pre>
+
+      <p>
+        Türevi hesaplarken, kırmızı altıgenden weights bulunan en üstteki
+        altıgene giden yoldaki tüm kısmi türevleri çarparsınız.
+      </p>
+
+      <p>
+        <strong>y = f(x)</strong> fonksiyonundan hareket ederek, f'nin x'e göre
+        türevi olduğunu söyleyebilirsiniz. Bu terminolojiyi kullanarak,
+        <strong>derror_dprediction</strong> için, hatayı tahmin değerine göre
+        hesaplayan fonksiyonun türevini bilmek istersiniz.
+      </p>
+
+      <p>
+        Bu ters yola <strong>geri yayılım</strong> adı verilir. Her geri
+        geçişte, her fonksiyonun kısmi türevlerini hesaplarsınız, değişkenleri
+        değerleriyle değiştirirsiniz ve en sonunda her şeyi çarparsınız.
+      </p>
+
+      <blockquote>
+        "Kısmi türevleri al, değerlendir ve çarp" işlemi, zincir kuralını nasıl
+        uyguladığınızdır. Sinir ağı parametrelerini güncelleyen bu algoritmaya
+        geri yayılım denir.
+      </blockquote>
+
+      <h3>Geri Yayılım Parametleri</h3>
+
+      <p>
+        Bu bölümde, bias'ı nasıl güncellediğinizden başlayarak geri yayılım
+        sürecini adım adım inceleyeceğiz. Bias'a göre, hata fonksiyonunun
+        türevini almakla başlarsınız, sonra geriye doğru giderek bias
+        değişkenine ulaşana kadar kısmi türevleri alırsınız.
+      </p>
+
+      <p>
+        Sondan başlayarak geriye doğru gittiğiniz için, önce tahmine göre
+        hatanın kısmi türevini almanız gerekmektedir.
+      </p>
+
+      <img
+        alt="Bias gradyanını hesaplamak için kısmi türevleri gösteren bir diyagram"
+        src="bias-gradyan-diyagrami.jpg"
+        style="width: 75%"
+      />
+
+      <p>
+        Hatanın kaynağı olan fonksiyon bir kare fonksiyonudur ve daha önce
+        gördüğünüz gibi bu fonksiyonun türevi <strong>2*x</strong>'tir. İlk
+        kısmi türevi (derror_dprediction) uyguladınız ve yine de bias'a
+        ulaşamadınız. Bu yüzden bir adım daha geri atmanız ve önceki katman olan
+        <strong>dprediction_dlayer1</strong> ile ilgili tahminin türevini
+        almanız gerekiyor.
+      </p>
+
+      <p>
+        Tahmin, Sigmoid işlevinin sonucudur. <strong>Sigmoid(x)</strong> ve
+        <strong>1 - sigmoid(x)</strong>'i çarparak sigmoid fonksiyonunun
+        türevini alabilirsiniz. Bu türev formülü, zaten hesaplanmış olan sigmoid
+        sonucunu kullanarak türevi hesaplamak için çok kullanışlıdır. Sonra bu
+        kısmi türevi alırsınız ve geriye doğru gitmeye devam edersiniz.
+      </p>
+
+      <p>
+        Şimdi, bias ile ilgili olarak <strong>layer_1</strong>'in türevini
+        alacaksınız. Bias değişkeni bağımsız bir değişkendir, dolayısıyla güç
+        kuralını uyguladıktan sonraki sonuç 1'dir. Artık bu geriye doğru geçişi
+        tamamladığınıza göre, her şeyi bir araya getirerek
+        <strong>derror_dbias</strong>'ı hesaplayabilirsiniz:
+      </p>
+
+      <pre><code>In [36]: def sigmoid_deriv(x):
+   ...:     return sigmoid(x) * (1-sigmoid(x))
+
+In [37]: derror_dprediction = 2 * (prediction - target)
+In [38]: layer_1 = np.dot(input_vector, weights_1) + bias
+In [39]: dprediction_dlayer1 = sigmoid_deriv(layer_1)
+In [40]: dlayer1_dbias = 1
+
+In [41]: derror_dbias = (
+   ...:     derror_dprediction * dprediction_dlayer1 * dlayer1_dbias
+   ...: )</code></pre>
+
+      <p>
+        Ağırlıkları güncellemek için aynı süreci izlersiniz, geriye doğru
+        giderek ağırlık değişkenine ulaşana kadar kısmi türevleri alırsınız.
+        Bazı kısmi türevleri zaten hesapladığınız için, sadece
+        <strong>dlayer1_dweights</strong>'i hesaplamanız gerekir. Nokta
+        çarpımının türevi, ilk vektörün ikinci vektörle çarpımı, artı ikinci
+        vektörün türevinin ilk vektörle çarpımıdır.
+      </p>
+
+      <h3>Sinir Ağı Sınıfının Oluşturulması</h3>
+
+      <p>
+        Artık hem ağırlıkları hem de bias'ı güncellemek için ifadeleri nasıl
+        yazacağınızı biliyorsunuz. Sinir ağınız için bir sınıf oluşturma zamanı.
+        Sınıflar, nesne yönelimli programlamanın ana yapı taşlarıdır.
+        NeuralNetwork sınıfı, ağırlıklar ve bias için rastgele başlangıç
+        değerleri oluşturur.
+      </p>
+
+      <p>
+        Bir NeuralNetwork nesnesinin örneğini oluştururken,
+        <strong>learning_rate</strong> parametresini iletmeniz gerekir. Tahmin
+        yapmak için <strong>predict()</strong> kullanacaksınız.
+        <strong>_compute_derivatives()</strong> ve
+        <strong>_update_parameters()</strong>
+        yöntemleri, bu bölümde öğrendiğiniz hesaplamaları içerir.
+      </p>
+
+      <p>İşte NeuralNetwork sınıfınız:</p>
+
+      <pre><code>class NeuralNetwork:
+    def __init__(self, learning_rate):
+        self.weights = np.array([np.random.randn(), np.random.randn()])
+        self.bias = np.random.randn()
+        self.learning_rate = learning_rate
+
+    def _sigmoid(self, x):
+        return 1 / (1 + np.exp(-x))
+
+    def _sigmoid_deriv(self, x):
+        return self._sigmoid(x) * (1 - self._sigmoid(x))
+
+    def predict(self, input_vector):
+        layer_1 = np.dot(input_vector, self.weights) + self.bias
+        layer_2 = self._sigmoid(layer_1)
+        prediction = layer_2
+        return prediction
+
+    def _compute_gradients(self, input_vector, target):
+        layer_1 = np.dot(input_vector, self.weights) + self.bias
+        layer_2 = self._sigmoid(layer_1)
+        prediction = layer_2
+
+        derror_dprediction = 2 * (prediction - target)
+        dprediction_dlayer1 = self._sigmoid_deriv(layer_1)
+        dlayer1_dbias = 1
+        dlayer1_dweights = (0 * self.weights) + (1 * input_vector)
+
+        derror_dbias = (
+            derror_dprediction * dprediction_dlayer1 * dlayer1_dbias
+        )
+        derror_dweights = (
+            derror_dprediction * dprediction_dlayer1 * dlayer1_dweights
+        )
+
+        return derror_dbias, derror_dweights
+
+    def _update_parameters(self, derror_dbias, derror_dweights):
+        self.bias = self.bias - (derror_dbias * self.learning_rate)
+        self.weights = self.weights - (
+            derror_dweights * self.learning_rate
+        )</code></pre>
+
+      <p>
+        Karşınızda, ilk sinir ağınızın kodu. Bir tahmin yapmak istiyorsanız,
+        önce bir <strong>NeuralNetwork()</strong> örneği oluşturun ve ardından
+        <strong>predict()</strong>'i çağırın:
+      </p>
+
+      <pre><code>In [42]: learning_rate = 0.1
+
+In [43]: neural_network = NeuralNetwork(learning_rate)
+
+In [44]: neural_network.predict(input_vector)
+Out[44]: array([0.79412963])</code></pre>
+
+      <p>
+        Yukarıdaki kod bir tahminde bulunur. Ancak şimdi, ağı nasıl
+        eğiteceğinizi öğrenmeniz gerekiyor. Amaç, ağın eğitim veri kümesi
+        üzerinde genelleştirmesini sağlamaktır. Bu, eğitim veri kümesiyle aynı
+        olasılık dağılımını izleyen, yeni, görünmeyen verilere uyum sağlamasını
+        istediğiniz anlamına gelir.
+      </p>
+
+      <h3>Ağı Daha Fazla Veri İle Eğitmek</h3>
+
+      <p>
+        Şimdiye kadar bir veri örneği üzerinde ağırlık ve bias ayarlamaları
+        yaptınız, ancak asıl amaç, ağın tüm veri kümesi üzerinde genelleme
+        yapabilmesini sağlamaktır. Stokastik gradyan inişi ise, modelin her
+        iterasyonda rastgele seçilen bir eğitim verisi üzerinden tahmin
+        yapmasına, hatayı hesaplamasına ve parametreleri güncellemesine dayanan
+        bir yöntemdir.
+      </p>
+
+      <p>
+        Şimdi, <strong>NeuralNetwork</strong> sınıfınızın
+        <strong>train()</strong> metodunu oluşturma zamanı. Her 100 iterasyonda
+        bir, tüm veri noktaları için kümülatif hatayı kaydedeceksiniz. Çünkü
+        iterasyon sayısı arttıkça bu metriğin nasıl değiştiğini gösteren bir
+        grafik çizmek istiyorsunuz.
+      </p>
+
+      <p>
+        Burada, sinir ağınızın güncellenmiş <strong>train()</strong> metodu
+        verilmiştir:
+      </p>
+
+      <pre><code>class NeuralNetwork:
+    def __init__(self, learning_rate):
+        self.weights = np.array([np.random.randn(), np.random.randn()])
+        self.bias = np.random.randn()
+        self.learning_rate = learning_rate
+
+    def train(self, input_vectors, targets, iterations):
+        cumulative_errors = []
+        for current_iteration in range(iterations):
+            random_data_index = np.random.randint(len(input_vectors))
+
+            input_vector = input_vectors[random_data_index]
+            target = targets[random_data_index]
+
+            derror_dbias, derror_dweights = self._compute_gradients(input_vector, target)
+            self._update_parameters(derror_dbias, derror_dweights)
+
+            if current_iteration % 100 == 0:
+                cumulative_error = 0
+                for data_instance_index in range(len(input_vectors)):
+                    data_point = input_vectors[data_instance_index]
+                    target = targets[data_instance_index]
+
+                    prediction = self.predict(data_point)
+                    error = np.square(prediction - target)
+
+                    cumulative_error += error
+                cumulative_errors.append(cumulative_error)
+
+        return cumulative_errors
+</code></pre>
+
+      <p>
+        Yukarıdaki kodda birçok adım yer almakta, bu nedenle her bir satırı
+        açıklama ihtiyacı hissediyorum:
+      </p>
+
+      <ul>
+        <li>
+          <strong>8. Satır:</strong> Veri kümesinden rastgele bir örnek seçer.
+        </li>
+        <li>
+          <strong>14-16. Satırlar:</strong> Kısmi türevleri hesaplar ve bias ve
+          ağırlıklar için türevleri döndürür. Daha önce tanımladığınız
+          <strong>_compute_gradients()</strong> metodunu kullanır.
+        </li>
+        <li>
+          <strong>18. Satır:</strong> Önceki kod bloğunda tanımladığınız
+          <strong>_update_parameters()</strong> metodunu kullanarak bias ve
+          ağırlıkları günceller.
+        </li>
+        <li>
+          <strong>21. Satır:</strong> Geçerli iterasyon indeksinin 100'ün katı
+          olup olmadığını kontrol eder. Bunu, her 100 iterasyonda bir, hatanın
+          nasıl değiştiğini gözlemlemek için yapar.
+        </li>
+        <li>
+          <strong>24. Satır:</strong> Tüm veri örneklerinden geçen döngüyü
+          başlatır.
+        </li>
+        <li><strong>28. Satır:</strong> Tahmin sonucunu hesaplar.</li>
+        <li>
+          <strong>29. Satır:</strong> Her durum için hatayı
+          (<strong>error</strong>) hesaplar.
+        </li>
+        <li>
+          <strong>31. Satır:</strong>
+          <strong>cumulative_error</strong> değişkenini kullanarak hataların
+          toplamını biriktirir.
+        </li>
+        <li>
+          <strong>32. Satır:</strong> Hatayı, hataları depolayan dizi olan
+          <strong>cumulative_errors</strong>'a ekler.
+        </li>
+      </ul>
+
+      <p>
+        Veri kümesinden rastgele bir örnek seçer, degradeleri hesaplar,
+        ağırlıkları ve bias'ı günceller. Ayrıca, her 100 iterasyonda bir,
+        kümülatif hatayı hesaplar ve bu sonuçları bir diziye kaydeder.
+      </p>
+
+      <p>
+        Modelinizi Jupyter Notebook ile çalıştırıyorsanız,
+        <strong>NeuralNetwork</strong> sınıfına
+        <strong>train()</strong> metodunu ekledikten sonra çekirdeği yeniden
+        başlatmanız gerekebilir.
+      </p>
+
+      <p>
+        Yalnızca sekiz örneğe sahip bir veri kümesi kullanarak işleri
+        basitleştireceksiniz. Artık <strong>train()</strong>'i çağırabilir ve
+        Matplotlib kullanarak her iterasyon için kümülatif hatayı
+        çizebilirsiniz:
+      </p>
+
+      <pre><code>In [45]: # NeuralNetwork sınıf kodunu buraya yapıştırın
+
+In [46]: import matplotlib.pyplot as plt
+
+In [47]: input_vectors = np.array([
+   ...:     [3, 1.5],
+   ...:     [2, 1],
+   ...:     [4, 1.5],
+   ...:     [3, 4],
+   ...:     [3.5, 0.5],
+   ...:     [2, 0.5],
+   ...:     [5.5, 1],
+   ...:     [1, 1],
+   ...: ])
+
+In [48]: targets = np.array([0, 1, 0, 1, 0, 1, 1, 0])
+
+In [49]: learning_rate = 0.1
+
+In [50]: neural_network = NeuralNetwork(learning_rate)
+
+In [51]: training_error = neural_network.train(input_vectors, targets, 10000)
+
+In [52]: plt.plot(training_error)
+In [53]: plt.xlabel("Iterations")
+In [54]: plt.ylabel("Error for all training instances")
+In [55]: plt.savefig("cumulative_error.png")
+</code></pre>
+
+      <p>
+        NeuralNetwork sınıfını yeniden başlatıp,
+        <strong>input_vectors</strong> ve hedef değerleri kullanarak
+        <strong>train()</strong>'i çağırırsınız. 10000 kez çalıştırılması
+        gerektiğini belirtirsiniz.
+      </p>
+
+      <p>Sinir ağı modelinizin eğitim hatasını gösteren grafik:</p>
+
+      <img
+        alt="Kümülatif eğitim hatasını gösteren grafik"
+        src="kumulatif-egitim-hata-grafigi.jpg"
+        style="width: 75%"
+      />
+
+      <p>
+        Genel hata azalmakta, bu da istenilen bir durumdur. Grafik, IPython'u
+        çalıştırdığınız dizinde oluşturulur. En büyük düşüşten sonra, hata bir
+        iterasyondan diğerine hızla yukarı ve aşağı gitmeye devam eder. Bunun
+        nedeni, veri kümesinin rastgele ve çok küçük olmasıdır. Bu nedenle sinir
+        ağının herhangi bir özellik çıkarması zordur.
+      </p>
+
+      <p>
+        Bu metrik kullanılarak performansı değerlendirmek iyi bir fikir
+        değildir, çünkü bunu yaparken ağın daha önce gördüğü veri örneklerini
+        kullanıyorsunuz. Bu, modelin eğitim veri setine o kadar iyi uyduğu
+        durumlarda, yeni verilere genelleştirilemediği durumda
+        <a
+          href="https://developers.google.com/machine-learning/crash-course/generalization/peril-of-overfitting"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          >aşırı uyum</a
+        >'a yol açabilir.
+      </p>
+
+      <h3>Sinir Ağına Daha Fazla Katman Ekleme</h3>
+
+      <p>
+        Bu makaledeki veri kümesi, öğrenme amaçlı olduğundan oldukça küçük ve
+        sınırlı tutulmuştur. Genellikle, derin öğrenme modelleri büyük miktarda
+        veriye ihtiyaç duyar çünkü veri kümeleri daha karmaşıktır ve çok sayıda
+        nüansa sahiptir.
+      </p>
+
+      <p>
+        Bu veri kümeleri daha karmaşık bilgilere sahip olduğundan, yalnızca bir
+        veya iki katman kullanmak yeterli değildir. Bu nedenle derin öğrenme
+        modellerine "derin" adı verilir; genellikle çok sayıda katmana
+        sahiptirler.
+      </p>
+
+      <p>
+        Daha fazla katman ekleyerek ve aktivasyon fonksiyonlarını kullanarak
+        ağın ifade gücünü artırabilir ve çok yüksek düzeyde tahminlerde
+        bulunabilirsiniz. Bu tür tahminlere bir örnek, telefonunuzla yüzünüzün
+        bir fotoğrafını çektiğinizde, telefonun çekilen resimde sizi tanıması ve
+        kilidi açmasıdır.
+      </p>
+
+      <h2>Son Sözler</h2>
+
+      <p>
+        Buraya kadar geldiyseniz, NumPy kullanarak sıfırdan bir sinir ağı
+        oluşturma konusunda aklınızda bir fikir oluşmuş demektir. Bu bilgiyle,
+        Python'da yapay zeka dünyasının derinliklerine dalmaya hazırsınız.
+      </p>
+
+      <p>
+        Bir sinir ağını eğitme süreci, temel olarak vektörlere işlem
+        uygulamaktan oluşur. Bu yazıda, bağımlılık olarak yalnızca NumPy
+        kullandınız ve bunu sıfırdan yaptınız. Bu, bir üretim ortamında tavsiye
+        edilmez çünkü tüm süreç verimsiz ve hataya açık olabilir.
+      </p>
+
+      <p>Burası Hackod.</p>
+    </article>
+    <footer>
+      <p>2024 &copy; <a href="/">Hackod</a></p>
+    </footer>
+  </body>
+</html>
